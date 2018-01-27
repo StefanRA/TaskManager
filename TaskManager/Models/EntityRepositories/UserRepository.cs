@@ -7,7 +7,7 @@ using TaskManager.Models.Entities;
 
 namespace TaskManager.Models.EntityRepositories
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly TaskManagerDbContext _dbContext;
 

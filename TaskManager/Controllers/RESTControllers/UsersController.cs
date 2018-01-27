@@ -13,7 +13,12 @@ namespace TaskManager.Controllers.RESTControllers
     [Route("api/[controller]")]
     public class UsersController : Controller
     {
-        private UserRepository _userRepository;
+        private IUserRepository _userRepository;
+
+        public UsersController(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
 
         // GET: api/users
         [HttpGet]
@@ -45,6 +50,7 @@ namespace TaskManager.Controllers.RESTControllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _userRepository.Delete(id);
         }
     }
 }

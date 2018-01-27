@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using TaskManager.Models.DatabaseContext;
+using TaskManager.Models.EntityRepositories;
 
 namespace TaskManager
 {
@@ -26,6 +27,7 @@ namespace TaskManager
         {
             services.AddDbContext<TaskManagerDbContext>(opt => opt.UseSqlServer(@"Server=.\;Database=TaskManager;Trusted_Connection=True;MultipleActiveResultSets=true"));
             services.AddMvc();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
