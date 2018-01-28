@@ -45,7 +45,7 @@ export class UserComponent {
     }
 
     public removeUser(user: User) {
-        this.userService.delete(user.userId).subscribe((res) => { });
+        this.userService.delete(user.id).subscribe((res) => { });
         this.users.splice(this.users.indexOf(user), 1);
     }
 }

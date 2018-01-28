@@ -36,6 +36,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.route.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\shared\shared-libraries.module.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

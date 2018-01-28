@@ -1,9 +1,7 @@
 ﻿import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { SharedLibrariesModule } from '../../shared/shared-libraries.module';
 
 import { UserComponent } from './user.component';
 import { UserService } from './user.service';
@@ -15,9 +13,7 @@ const ENTITY_STATES = [
 
 @NgModule({
     imports: [
-        CommonModule,
-        HttpModule,
-        FormsModule,
+        SharedLibrariesModule,
         RouterModule.forRoot(ENTITY_STATES)
     ],
     declarations: [
