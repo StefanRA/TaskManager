@@ -31,7 +31,7 @@ namespace TaskManager.Controllers.RESTControllers
         [HttpGet("{id}")]
         public User Get(int id)
         {
-            return _userRepository.FindById(id);
+            return _userRepository.Get(id);
         }
         
         [HttpPost]
@@ -41,7 +41,7 @@ namespace TaskManager.Controllers.RESTControllers
             {
                 return BadRequest();
             }
-            _userRepository.Insert(user);
+            _userRepository.Add(user);
             return new ObjectResult(user);
         }
 
@@ -55,7 +55,7 @@ namespace TaskManager.Controllers.RESTControllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            _userRepository.Delete(id);
+            _userRepository.Remove(_userRepository.Get(id));
         }
     }
 }

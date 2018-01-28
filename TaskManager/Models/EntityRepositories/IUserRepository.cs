@@ -6,11 +6,7 @@ using TaskManager.Models.Entities;
 
 namespace TaskManager.Models.EntityRepositories
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User>
     {
-        IEnumerable<User> GetAll();
-        User FindById(int id);
-        void Delete(int id);
-        void Insert(User user);
     }
 }
