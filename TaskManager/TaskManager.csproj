@@ -21,13 +21,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\entities\entity.module.ts" />
     <None Remove="ClientApp\app\components\entities\user\user.component.ts" />
     <None Remove="ClientApp\app\components\entities\user\user.model.ts" />
+    <None Remove="ClientApp\app\components\entities\user\user.module.ts" />
+    <None Remove="ClientApp\app\components\entities\user\user.route.ts" />
+    <None Remove="ClientApp\app\components\entities\user\user.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\entities\entity.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.route.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

@@ -29,6 +29,7 @@ namespace TaskManager.Models.EntityRepositories
         public void Delete(int id)
         {
             _dbContext.Users.Remove(FindById(id));
+            _dbContext.SaveChanges();
         }
 
         public void Insert(User user)
