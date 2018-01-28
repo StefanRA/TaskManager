@@ -21,6 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\entities\entity-administration\entity-administration.module.ts" />
+    <None Remove="ClientApp\app\components\entities\entity-administration\entity-administration.route.ts" />
     <None Remove="ClientApp\app\components\entities\entity.module.ts" />
     <None Remove="ClientApp\app\components\entities\user\user.component.ts" />
     <None Remove="ClientApp\app\components\entities\user\user.model.ts" />
@@ -30,6 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\entities\entity-administration\entity-administration.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\entities\entity-administration\entity-administration.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\entities\entity-administration\entity-administration.route.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\entity.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\project\project.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\project\project.model.ts" />

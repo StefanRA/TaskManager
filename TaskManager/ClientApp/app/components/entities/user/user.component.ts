@@ -48,4 +48,8 @@ export class UserComponent {
         this.userService.delete(user.id).subscribe((res) => { });
         this.users.splice(this.users.indexOf(user), 1);
     }
+
+    previousState() {
+        window.history.back();
+    }
 }

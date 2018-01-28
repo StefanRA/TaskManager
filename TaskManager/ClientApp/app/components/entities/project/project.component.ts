@@ -52,4 +52,8 @@ export class ProjectComponent {
         this.projectService.delete(project.id).subscribe((res) => { });
         this.projects.splice(this.projects.indexOf(project), 1);
     }
+
+    previousState() {
+        window.history.back();
+    }
 }
