@@ -2,16 +2,16 @@
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
-import { User } from './user.model';
+import { Project } from './project.model';
 
 @Injectable()
-export class UserService {
-    private resourceUrl = 'api/users';
+export class ProjectService {
+    private resourceUrl = 'api/projects';
 
     constructor(private http: Http) { }
 
-    create(user: User): Observable<Response> {
-        const copy = this.convert(user);
+    create(project: Project): Observable<Response> {
+        const copy = this.convert(project);
         return this.http.post(this.resourceUrl, copy);
     }
 
@@ -19,27 +19,27 @@ export class UserService {
         return this.http.get(this.resourceUrl);
     }
 
-    delete(id?: number): Observable<Response> {
-        return this.http.delete(`${this.resourceUrl}/${id}`);
-    }
-
     find(id: number): Observable<Response> {
         return this.http.get(`${this.resourceUrl}/${id}`);
+    }
+
+    delete(id?: number): Observable<Response> {
+        return this.http.delete(`${this.resourceUrl}/${id}`);
     }
 
     /**
      * Convert a returned JSON object to City.
      */
-    private convertItemFromServer(json: any): User {
-        const entity: User = Object.assign(new User(), json);
+    private convertItemFromServer(json: any): Project {
+        const entity: Project = Object.assign(new Project(), json);
         return entity;
     }
 
     /**
      * Convert a City to a JSON which can be sent to the server.
      */
-    private convert(user: User): User {
-        const copy: User = Object.assign({}, user);
+    private convert(user: Project): Project {
+        const copy: Project = Object.assign({}, user);
         return copy;
     }
 }

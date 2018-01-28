@@ -28,6 +28,7 @@ namespace TaskManager
             services.AddDbContext<TaskManagerDbContext>(opt => opt.UseSqlServer(@"Server=.\;Database=TaskManager;Trusted_Connection=True;MultipleActiveResultSets=true"));
             services.AddMvc();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IProjectRepository, ProjectRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

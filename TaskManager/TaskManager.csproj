@@ -31,6 +31,11 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\entities\entity.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\entities\project\project.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\entities\project\project.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\entities\project\project.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\entities\project\project.route.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\entities\project\project.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.module.ts" />
