@@ -34,6 +34,7 @@ namespace TaskManager.Models.EntityRepositories
         public void Insert(User user)
         {
             _dbContext.Users.Add(user);
+            _dbContext.SaveChanges();
         }
     }
 }

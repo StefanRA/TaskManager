@@ -33,11 +33,16 @@ namespace TaskManager.Controllers.RESTControllers
         {
             return _userRepository.FindById(id);
         }
-
-        // POST api/values
+        
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Post([FromBody]User user)
         {
+            if (user == null)
+            {
+                return BadRequest();
+            }
+            _userRepository.Insert(user);
+            return new ObjectResult(user);
         }
 
         // PUT api/values/5
