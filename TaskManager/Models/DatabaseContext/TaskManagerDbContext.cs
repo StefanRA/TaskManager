@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using TaskManager.Models.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace TaskManager.Models.DatabaseContext
 {
-    public class TaskManagerDbContext : DbContext
+    public class TaskManagerDbContext : IdentityDbContext
     {
         public TaskManagerDbContext(DbContextOptions options) : base(options)
         {
