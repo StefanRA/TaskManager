@@ -34,6 +34,7 @@ namespace TaskManager
             services.AddMvc();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<ITaskRepository, TaskRepository>();
             // ===== Add Identity ========
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<TaskManagerDbContext>()

@@ -32,7 +32,7 @@ namespace TaskManager.Controllers.RESTControllers
             _configuration = configuration;
         }
 
-            [HttpPost]
+        [HttpPost]
         public async Task<object> Login([FromBody] LoginDTO model)
         {
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);

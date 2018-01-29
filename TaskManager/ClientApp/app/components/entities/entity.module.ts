@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { UserModule } from './user/user.module';
 import { ProjectModule } from './project/project.module';
+import { TaskModule } from './task/task.module';
 
 import { EntityAdministrationModule } from './entity-administration/entity-administration.module';
 
@@ -13,7 +14,8 @@ import { EntityAdministrationModule } from './entity-administration/entity-admin
         SharedLibrariesModule,
         EntityAdministrationModule,
         UserModule,
-        ProjectModule
+        ProjectModule,
+        TaskModule
     ]
 })
 export class EntityModule {}

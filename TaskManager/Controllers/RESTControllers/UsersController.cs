@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using TaskManager.Models.EntityRepositories;
 using TaskManager.Models.Entities;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace TaskManager.Controllers.RESTControllers
 {
     [Route("api/[controller]")]
@@ -19,15 +17,13 @@ namespace TaskManager.Controllers.RESTControllers
         {
             _userRepository = userRepository;
         }
-
-        // GET: api/users
+        
         [HttpGet]
         public IEnumerable<User> GetAll()
         {
             return _userRepository.GetAll();
         }
-
-        // GET api/users/5
+        
         [HttpGet("{id}")]
         public User Get(int id)
         {
@@ -44,14 +40,12 @@ namespace TaskManager.Controllers.RESTControllers
             _userRepository.Add(user);
             return new ObjectResult(user);
         }
-
-        // PUT api/values/5
+        
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
-
-        // DELETE api/values/5
+        
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

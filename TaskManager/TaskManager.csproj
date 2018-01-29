@@ -39,6 +39,12 @@
     <TypeScriptCompile Include="ClientApp\app\components\entities\entity-administration\entity-administration.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\entity-administration\entity-administration.route.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\entity.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\entities\task\detail\task-detail.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\entities\task\task.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\entities\task\task.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\entities\task\task.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\entities\task\task.route.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\entities\task\task.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\project\detail\project-detail.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\project\project.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\project\project.model.ts" />

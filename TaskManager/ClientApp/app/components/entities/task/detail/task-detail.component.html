@@ -1,0 +1,13 @@
+﻿<div *ngIf="task">
+    <h1>{{ task.name }}</h1>
+
+    <div>
+        <div *ngIf="task.owner">
+            <span>Reporter: </span>
+            <a [routerLink]="['../../user', project.reporter.id ]">{{ task.reporter.displayName }}</a>
+        </div>
+        <span *ngIf="!task.reporter">No owner</span>
+    </div>
+
+    <button (click)="previousState()">Back</button>
+</div>
