@@ -1,0 +1,7 @@
+﻿.taskDetailContainer {
+}
+
+.taskDetailContainer .taskDetailSidebar {
+    background: lightgrey;
+    border-radius: 4px;
+}
