@@ -2,11 +2,21 @@
     <h1>{{ task.name }}</h1>
 
     <div>
-        <div *ngIf="task.owner">
-            <span>Reporter: </span>
-            <a [routerLink]="['../../user', project.reporter.id ]">{{ task.reporter.displayName }}</a>
+        <div>
+            <div class='col-sm-8'>
+                <p style="font-weight: bold">Description</p>
+                <span>{{ task.description }}</span>
+            </div>
+            <div class='col-sm-4 body-content'>
+                <p><b>Creation date:</b> {{ task.creationDate | date:'medium' }}</p>
+                <p><b>Due date:</b> {{ task.dueDate | date:'medium' }}</p>
+                <span><b>Reporter:</b></span>
+                <div *ngIf="task.reporter">                    
+                    <a [routerLink]="['../../user', task.reporter.id ]">{{ task.reporter.displayName }}</a>
+                </div>
+                <span *ngIf="!task.reporter">None</span>
+            </div>
         </div>
-        <span *ngIf="!task.reporter">No owner</span>
     </div>
 
     <button (click)="previousState()">Back</button>

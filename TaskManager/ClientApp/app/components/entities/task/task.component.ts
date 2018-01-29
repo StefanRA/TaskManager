@@ -37,9 +37,10 @@ export class TaskComponent {
             this.newTask.reporter = result;
             this.newTask.assignee = result;
         }, error => console.error(error));
+        this.newTask.creationDate = new Date();
+        this.newTask.dueDate = new Date();
 
         const copy = this.convert(this.newTask);
-        //this.http.post(this.resourceUrl, copy).subscribe(result => { this.newUser = result.json() },error=>console.error(error));
         this.taskService.create(this.newTask).subscribe(result => { this.newTask = result.json() }, error => console.error(error));
         this.tasks.push(this.newTask);
     }
