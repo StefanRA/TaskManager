@@ -24,6 +24,8 @@
     <None Remove="ClientApp\app\components\entities\entity-administration\entity-administration.module.ts" />
     <None Remove="ClientApp\app\components\entities\entity-administration\entity-administration.route.ts" />
     <None Remove="ClientApp\app\components\entities\entity.module.ts" />
+    <None Remove="ClientApp\app\components\entities\project\detail\project-detail.component.ts" />
+    <None Remove="ClientApp\app\components\entities\user\detail\user-detail.component.ts" />
     <None Remove="ClientApp\app\components\entities\user\user.component.ts" />
     <None Remove="ClientApp\app\components\entities\user\user.model.ts" />
     <None Remove="ClientApp\app\components\entities\user\user.module.ts" />
@@ -36,11 +38,13 @@
     <TypeScriptCompile Include="ClientApp\app\components\entities\entity-administration\entity-administration.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\entity-administration\entity-administration.route.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\entity.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\entities\project\detail\project-detail.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\project\project.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\project\project.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\project\project.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\project\project.route.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\project\project.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\entities\user\detail\user-detail.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.module.ts" />

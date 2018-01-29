@@ -22,6 +22,13 @@ namespace TaskManager.Models.EntityRepositories
                 .ToList();
         }
 
+        public Project GetWithRelatedDataIncluded(int id)
+        {
+            return _TaskManagerDbContext.Projects
+                .Include(project => project.Owner)
+                .FirstOrDefault(project => project.Id == id);
+        }
+
         public TaskManagerDbContext _TaskManagerDbContext
         {
             get { return _dbContext as TaskManagerDbContext; }

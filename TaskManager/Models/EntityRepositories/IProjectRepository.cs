@@ -8,6 +8,7 @@ namespace TaskManager.Models.EntityRepositories
 {
     public interface IProjectRepository : IRepository<Project>
     {
+        Project GetWithRelatedDataIncluded(int id);
         IEnumerable<Project> GetAllWithRelatedDataIncluded();
     }
 }

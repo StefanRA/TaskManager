@@ -31,7 +31,7 @@ namespace TaskManager.Controllers.RESTControllers
         [HttpGet("{id}")]
         public Project Get(int id)
         {
-            return _projectRepository.Get(id);
+            return _projectRepository.GetWithRelatedDataIncluded(id);
         }
 
         [HttpPost]

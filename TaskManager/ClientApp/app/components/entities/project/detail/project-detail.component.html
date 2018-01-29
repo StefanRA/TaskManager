@@ -1,0 +1,13 @@
+﻿<div *ngIf="project">
+    <h1>{{ project.name }}</h1>
+
+    <div>
+        <div *ngIf="project.owner">
+            <span>Owner: </span>
+            <a [routerLink]="['../../user', project.owner.id ]">{{ project.owner.displayName }}</a>
+        </div>
+        <span *ngIf="!project.owner">No owner</span>
+    </div>
+
+    <button (click)="previousState()">Back</button>
+</div>
