@@ -15,6 +15,7 @@ using TaskManager.Models.EntityRepositories;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using TaskManager.Models.Entities;
 
 namespace TaskManager
 {
@@ -32,11 +33,10 @@ namespace TaskManager
         {
             services.AddDbContext<TaskManagerDbContext>(opt => opt.UseSqlServer(@"Server=.\;Database=TaskManager;Trusted_Connection=True;MultipleActiveResultSets=true"));
             services.AddMvc();
-            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<ITaskRepository, TaskRepository>();
             // ===== Add Identity ========
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<TaskManagerDbContext>()
                 .AddDefaultTokenProviders();
 

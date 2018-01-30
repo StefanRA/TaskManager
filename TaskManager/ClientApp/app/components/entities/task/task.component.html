@@ -22,7 +22,7 @@
             <td>{{ task.id }}</td>
             <td><a [routerLink]="['../task', task.id ]">{{task.name}}</a></td>
             <td>{{ task.description }}</td>
-            <td *ngIf="task.reporter">{{ task.reporter.displayName }}</td> <td *ngIf="!task.reporter">-</td>
+            <td *ngIf="task.reporter">{{ task.reporter.userName }}</td> <td *ngIf="!task.reporter">-</td>
             <td><button (click)="remove(task)">Delete</button></td>
         </tr>
     </tbody>

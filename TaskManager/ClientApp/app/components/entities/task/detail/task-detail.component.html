@@ -11,7 +11,7 @@
             <p><b>Due date:</b> {{ task.dueDate | date:'medium' }}</p>
             <span><b>Reporter:</b></span>
             <div *ngIf="task.reporter">                    
-                <a [routerLink]="['../../user', task.reporter.id ]">{{ task.reporter.displayName }}</a>
+                <a [routerLink]="['../../user', task.reporter.id ]">{{ task.reporter.userName }}</a>
             </div>
             <span *ngIf="!task.reporter">None</span>
         </div>

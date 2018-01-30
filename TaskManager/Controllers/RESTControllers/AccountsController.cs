@@ -10,6 +10,7 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
+using TaskManager.Models.Entities;
 using TaskManager.Models.DataTransferObjects;
 
 namespace TaskManager.Controllers.RESTControllers
@@ -17,13 +18,13 @@ namespace TaskManager.Controllers.RESTControllers
     [Route("api/[controller]/[action]")]
     public class AccountsController : Controller
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
 
         public AccountsController(
-            SignInManager<IdentityUser> signInManager,
-            UserManager<IdentityUser> userManager,
+            SignInManager<User> signInManager,
+            UserManager<User> userManager,
             IConfiguration configuration
             )
         {
@@ -49,7 +50,7 @@ namespace TaskManager.Controllers.RESTControllers
         [HttpPost]
         public async Task<object> Register([FromBody] RegisterDTO model)
         {
-            var user = new IdentityUser
+            var user = new User
             {
                 UserName = model.UserName,
                 Email = model.Email
@@ -65,7 +66,7 @@ namespace TaskManager.Controllers.RESTControllers
             throw new ApplicationException("UNKNOWN_ERROR");
         }
 
-        private async Task<object> GenerateJwtToken(string email, IdentityUser user)
+        private async Task<object> GenerateJwtToken(string email, User user)
         {
             var claims = new List<Claim>
             {

@@ -28,7 +28,7 @@ export class UserComponent {
 
     add() {
         this.newUser = new User();
-        this.newUser.displayName = 'stefan';
+        this.newUser.userName = 'stefan';
         this.newUser.firstName = 'Stefan';
         this.newUser.lastName = 'RA';
         this.newUser.email = 'yep';

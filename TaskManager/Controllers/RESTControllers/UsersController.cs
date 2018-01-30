@@ -5,29 +5,30 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TaskManager.Models.EntityRepositories;
 using TaskManager.Models.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace TaskManager.Controllers.RESTControllers
 {
     [Route("api/[controller]")]
     public class UsersController : Controller
     {
-        private IUserRepository _userRepository;
+        private readonly UserManager<User> _userManager;
 
-        public UsersController(IUserRepository userRepository)
+        public UsersController(UserManager<User> userManager)
         {
-            _userRepository = userRepository;
+            _userManager = userManager;
         }
         
         [HttpGet]
         public IEnumerable<User> GetAll()
         {
-            return _userRepository.GetAll();
+            return _userManager.Users.ToList();
         }
         
         [HttpGet("{id}")]
-        public User Get(int id)
+        public async Task<User> Get(string id)
         {
-            return _userRepository.Get(id);
+            return await _userManager.FindByIdAsync(id);
         }
         
         [HttpPost]
@@ -37,7 +38,7 @@ namespace TaskManager.Controllers.RESTControllers
             {
                 return BadRequest();
             }
-            _userRepository.Add(user);
+            _userManager.CreateAsync(user);
             return new ObjectResult(user);
         }
         
@@ -47,9 +48,11 @@ namespace TaskManager.Controllers.RESTControllers
         }
         
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
-            _userRepository.Remove(_userRepository.Get(id));
+            var user = await _userManager.FindByIdAsync(id);
+            var result = await _userManager.DeleteAsync(user);
+            return Ok();
         }
     }
 }

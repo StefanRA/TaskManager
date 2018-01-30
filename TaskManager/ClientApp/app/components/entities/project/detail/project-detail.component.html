@@ -4,7 +4,7 @@
     <div>
         <div *ngIf="project.owner">
             <span>Owner: </span>
-            <a [routerLink]="['../../user', project.owner.id ]">{{ project.owner.displayName }}</a>
+            <a [routerLink]="['../../user', project.owner.id ]">{{ project.owner.userName }}</a>
         </div>
         <span *ngIf="!project.owner">No owner</span>
     </div>

@@ -9,13 +9,17 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace TaskManager.Models.DatabaseContext
 {
-    public class TaskManagerDbContext : IdentityDbContext
+    public class TaskManagerDbContext : IdentityDbContext<User>
     {
         public TaskManagerDbContext(DbContextOptions options) : base(options)
         {
         }
 
-        public DbSet<User> Users { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
+
         public DbSet<Project> Projects { get; set; }
         public DbSet<Entities.Task> Tasks { get; set; }
     }
