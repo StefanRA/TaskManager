@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { EntityModule } from './components/entities/entity.module';
+import { AuthenticationModule } from './components/authentication/authentication.module';
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
@@ -16,6 +17,7 @@ import { HomeComponent } from './components/home/home.component';
         HttpModule,
         FormsModule,
         EntityModule,
+        AuthenticationModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },

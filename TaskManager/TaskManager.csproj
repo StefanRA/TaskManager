@@ -22,6 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\authentication\authentication.module.ts" />
+    <None Remove="ClientApp\app\components\authentication\register.component.ts" />
+    <None Remove="ClientApp\app\components\authentication\register\register.model.ts" />
+    <None Remove="ClientApp\app\components\authentication\register\register.service.ts" />
     <None Remove="ClientApp\app\components\entities\entity-administration\entity-administration.module.ts" />
     <None Remove="ClientApp\app\components\entities\entity-administration\entity-administration.route.ts" />
     <None Remove="ClientApp\app\components\entities\entity.module.ts" />
@@ -35,6 +39,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\authentication\authentication.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\authentication\register\register.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\authentication\register\register.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\authentication\register\register.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\entity-administration\entity-administration.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\entity-administration\entity-administration.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\entity-administration\entity-administration.route.ts" />
@@ -58,6 +66,10 @@
     <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.route.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\shared-libraries.module.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\app\components\authentication\login\" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

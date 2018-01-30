@@ -53,6 +53,8 @@ namespace TaskManager.Controllers.RESTControllers
             var user = new User
             {
                 UserName = model.UserName,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
                 Email = model.Email
             };
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -63,7 +65,7 @@ namespace TaskManager.Controllers.RESTControllers
                 return await GenerateJwtToken(model.Email, user);
             }
 
-            throw new ApplicationException("UNKNOWN_ERROR");
+            throw new Exception(result.ToString());
         }
 
         private async Task<object> GenerateJwtToken(string email, User user)
