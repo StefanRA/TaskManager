@@ -2,21 +2,35 @@
     <h1>{{ task.name }}</h1>
     <hr>
     <div class="taskDetailContainer">
-        <div class='col-sm-8'>
+        <div class='col-sm-8 taskDescriptionContainer'>
             <p style="font-weight: bold">Description</p>
-            <span>{{ task.description }}</span>
+            <textarea name="comment" id="field_comment" [(ngModel)]="task.description" style="width: 100%;"></textarea>
         </div>
         <div class='col-sm-4 taskDetailSidebar'>
-            <p><b>Project:</b><a [routerLink]="['/project', task.parentProject.id ]">{{ task.parentProject.name }}</a></p>
-            <p><b>Creation date:</b> {{ task.creationDate | date:'medium' }}</p>
-            <p><b>Due date:</b> {{ task.dueDate | date:'medium' }}</p>
-            <span><b>Reporter:</b></span>
-            <div *ngIf="task.reporter">                    
-                <a [routerLink]="['../../user', task.reporter.id ]">{{ task.reporter.userName }}</a>
-            </div>
-            <span *ngIf="!task.reporter">None</span>
+            <p class="text-divider">General information</p>
+            <p><b>Project: </b><a [routerLink]="['/project', task.parentProject.id ]">{{ task.parentProject.name }}</a></p>
+            <p class="text-divider">Important dates</p>
+            <p><b>Creation date: </b> {{task.creationDate | date:'medium'}}</p>
+            <p><b>Due date: </b> {{task.dueDate | date:'medium'}}</p>
+            <p class="text-divider">People involved</p>
+            <p>
+                <span><b>Reporter: </b></span>
+                <span *ngIf="task.reporter">                    
+                    <a [routerLink]="['../../user', task.reporter.id ]">{{ task.reporter.userName }}</a>
+                </span>
+                <span *ngIf="!task.reporter">None</span>
+            </p>
+            <p>
+                <span><b>Assignee: </b></span>
+                <span *ngIf="task.assignee">
+                    <a [routerLink]="['../../user', task.assignee.id ]">{{ task.reporter.userName }}</a>
+                </span>
+                <span *ngIf="!task.assignee">None</span>
+            </p>
         </div>
     </div>
     <hr>
-    <task-comment [comments]="task.comments"></task-comment>
+    <div class="col-sm-12">
+        <task-comment [comments]="task.comments"></task-comment>
+    </div>
 </div>

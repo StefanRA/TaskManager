@@ -1,7 +1,38 @@
 ﻿.taskDetailContainer {
 }
 
-.taskDetailContainer .taskDetailSidebar {
-    background: lightgrey;
-    border-radius: 4px;
+    .taskDetailContainer .taskDetailSidebar {
+        border-left: 1px solid;
+        border-left-color: lightgray;
+    }
+
+.taskDescriptionContainer {
+}
+
+    .taskDescriptionContainer textarea {
+        resize: vertical;
+        min-height: 75px;
+        border: hidden;
+        padding: 3px;
+        resize: none;
+    }
+
+        .taskDescriptionContainer textarea:hover {
+            padding: 2px;
+            border: 1px solid;
+            border-radius: 1px;
+            border-color: lightgray;
+        }
+
+        .taskDescriptionContainer textarea:focus {
+            padding: 2px;
+            border: 1px solid;
+            border-radius: 1px;
+            border-color: lightgray;
+        }
+
+.text-divider {
+    text-align: center;
+    border-bottom: 1px solid lightgray;
+    font-weight: bold;
 }
