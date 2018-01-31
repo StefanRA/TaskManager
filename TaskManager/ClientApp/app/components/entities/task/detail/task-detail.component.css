@@ -1,10 +1,43 @@
-﻿.taskDetailContainer {
+﻿.taskInformationContainer {
+    padding-top: 1em;
 }
 
-    .taskDetailContainer .taskDetailSidebar {
-        border-left: 1px solid;
-        border-left-color: lightgray;
+.top-buffer {
+    margin-top: 20px;
+}
+
+.taskDetailSidebar {
+    border-left: 1px solid;
+    border-left-color: lightgray;
+}
+
+.taskTitleContainer {
+    border-bottom: 1px solid lightgray;
+}
+
+    .taskTitleContainer textarea {
+        resize: vertical;
+        font-size: xx-large;
+        resize: none;
+        white-space: nowrap;
+        font-weight: bold;
+        border: hidden;
+        padding: 3px;
     }
+
+        .taskTitleContainer textarea:hover {
+            padding: 2px;
+            border: 1px solid;
+            border-radius: 1px;
+            border-color: lightgray;
+        }
+
+        .taskTitleContainer textarea:focus {
+            padding: 2px;
+            border: 1px solid;
+            border-radius: 1px;
+            border-color: lightgray;
+        }
 
 .taskDescriptionContainer {
 }

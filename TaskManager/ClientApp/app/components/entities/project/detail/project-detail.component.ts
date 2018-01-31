@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 
 import { Project } from '../project.model';
@@ -15,7 +15,8 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
 
     constructor(
         private projectService: ProjectService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private router: Router
     )
     {
     }
@@ -33,7 +34,7 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     }
 
     previousState() {
-        window.history.back();
+        this.router.navigateByUrl('/project');
     }
 
     ngOnDestroy() {

@@ -46,12 +46,25 @@ namespace TaskManager.Controllers.RESTControllers
             _taskRepository.Add(task);
             return new ObjectResult(task);
         }
-        
+
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Update(long id, [FromBody] Models.Entities.Task item)
         {
+            if (item == null || item.Id != id)
+            {
+                return BadRequest();
+            }
+
+            var existingTask = _taskRepository.Find(task => task.Id == item.Id);
+            if (existingTask == null)
+            {
+                return NotFound();
+            }
+
+            _taskRepository.Update(item);
+            return new NoContentResult();
         }
-        
+
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

@@ -61,8 +61,4 @@ export class TaskComponent {
         this.taskService.delete(project.id).subscribe((res) => { });
         this.tasks.splice(this.tasks.indexOf(project), 1);
     }
-
-    previousState() {
-        window.history.back();
-    }
 }

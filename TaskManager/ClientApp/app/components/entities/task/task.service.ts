@@ -32,6 +32,12 @@ export class TaskService {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
 
+    update(task: Task): Observable<Task> {
+        return this.http.put(`${this.resourceUrl}/${task.id}`, task).map((res: Response) => {
+            return res.json();
+        });
+    }
+
     /**
      * Convert a returned JSON object to City.
      */

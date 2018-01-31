@@ -1,13 +1,13 @@
-﻿<div *ngIf="project">
+﻿<div *ngIf="project" class="container-fluid">
     <h1>{{ project.name }}</h1>
-
-    <div>
+    <div class="row">
         <div *ngIf="project.owner">
             <span>Owner: </span>
             <a [routerLink]="['../../user', project.owner.id ]">{{ project.owner.userName }}</a>
         </div>
-        <span *ngIf="!project.owner">No owner</span>
+        <p *ngIf="!project.owner">No owner</p>
+        <button (click)="previousState()">Return to project list</button>
     </div>
+    <hr />
     <task [parentProject]="project"></task>
-    <button (click)="previousState()">Back</button>
 </div>

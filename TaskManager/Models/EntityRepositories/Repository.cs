@@ -54,5 +54,11 @@ namespace TaskManager.Models.EntityRepositories
             _dbContext.Set<TEntity>().RemoveRange(entities);
             _dbContext.SaveChanges();
         }
+
+        public virtual void Update(TEntity entity)
+        {
+            _dbContext.Set<TEntity>().Update(entity);
+            _dbContext.SaveChanges();
+        }
     }
 }

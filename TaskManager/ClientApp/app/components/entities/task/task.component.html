@@ -1,29 +1,30 @@
-<h1>Tasks</h1>
+<div class="row">
+    <p *ngIf="!tasks"><em>Loading...</em></p>
 
-<p>This component demonstrates fetching data from the server.</p>
+    <button (click)="add()">Add a task</button>
 
-<p *ngIf="!tasks"><em>Loading...</em></p>
-
-<button (click)="add()">Add a task</button>
-<button (click)="previousState()">Back</button>
-
-<table class='table' *ngIf="tasks">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Task Name</th>
-            <th>Task Description</th>
-            <th>Reporter</th>
-            <th>Operations</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let task of tasks">
-            <td>{{ task.id }}</td>
-            <td><a [routerLink]="['/task', task.id ]">{{task.name}}</a></td>
-            <td>{{ task.description }}</td>
-            <td *ngIf="task.reporter">{{ task.reporter.userName }}</td> <td *ngIf="!task.reporter">-</td>
-            <td><button (click)="remove(task)">Delete</button></td>
-        </tr>
-    </tbody>
-</table>
+    <div *ngIf="tasks">
+        <p *ngIf="tasks.length == 0">This project contains no tasks</p>
+        <table class='table' *ngIf="tasks.length > 0">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Task Name</th>
+                    <th>Task Description</th>
+                    <th>Reporter</th>
+                    <th>Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let task of tasks">
+                    <td>{{ task.id }}</td>
+                    <td><a [routerLink]="['/task', task.id ]">{{task.name}}</a></td>
+                    <td>{{ task.description }}</td>
+                    <td *ngIf="task.reporter">{{ task.reporter.userName }}</td>
+                    <td *ngIf="!task.reporter">-</td>
+                    <td><button (click)="remove(task)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

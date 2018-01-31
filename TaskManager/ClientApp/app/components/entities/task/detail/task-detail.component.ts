@@ -36,6 +36,10 @@ export class TaskDetailComponent implements OnInit, OnDestroy {
         });
     }
 
+    update() {
+        this.taskService.update(this.task).subscribe();
+    }
+
     ngOnDestroy() {
         this.subscription.unsubscribe();
     }
