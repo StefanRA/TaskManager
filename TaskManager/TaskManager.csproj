@@ -23,6 +23,8 @@
 
   <ItemGroup>
     <None Remove="ClientApp\app\components\authentication\authentication.module.ts" />
+    <None Remove="ClientApp\app\components\authentication\login\login.model.ts" />
+    <None Remove="ClientApp\app\components\authentication\login\login.service.ts" />
     <None Remove="ClientApp\app\components\authentication\register.component.ts" />
     <None Remove="ClientApp\app\components\authentication\register\register.model.ts" />
     <None Remove="ClientApp\app\components\authentication\register\register.service.ts" />
@@ -40,6 +42,9 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\authentication\authentication.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\authentication\login\login.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\authentication\login\login.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\authentication\login\login.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\authentication\register\register.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\authentication\register\register.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\authentication\register\register.service.ts" />
@@ -66,10 +71,6 @@
     <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.route.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\shared-libraries.module.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\app\components\authentication\login\" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
