@@ -14,7 +14,6 @@
             <div class="form-group">
                 <label for="email">User Name</label>
                 <input id="email" type="text" required name="userName" class="form-control" placeholder="User Name" [ngModel]="credentials.userName" #email="ngModel" tmFocus validateEmail>
-                <small [hidden]="userName.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid username</small>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>

@@ -28,6 +28,7 @@ namespace TaskManager.Models.EntityRepositories
             return _TaskManagerDbContext.Tasks
                 .Include(task => task.Reporter)
                 .Include(task => task.Assignee)
+                .Include(task => task.Comments)
                 .FirstOrDefault(task => task.Id == id);
         }
 
