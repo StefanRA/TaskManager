@@ -7,6 +7,7 @@ import { Task } from './task.model';
 @Injectable()
 export class TaskService {
     private resourceUrl = 'api/tasks';
+    private resUrl = 'api/tasks/byProject';
 
     constructor(private http: Http) { }
 
@@ -17,6 +18,10 @@ export class TaskService {
 
     getAll(): Observable<Response> {
         return this.http.get(this.resourceUrl);
+    }
+
+    getAllByProjectId(projectId: any): Observable<Response> {
+        return this.http.get(`${this.resUrl}/${projectId}`);
     }
 
     find(id: number): Observable<Response> {

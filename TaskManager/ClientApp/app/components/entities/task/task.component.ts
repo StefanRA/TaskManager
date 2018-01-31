@@ -1,4 +1,4 @@
-﻿import { Component, Input } from '@angular/core';
+﻿import { Component, Input, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
@@ -23,11 +23,14 @@ export class TaskComponent {
         private userService: UserService
         )
     {
+    }
+
+    ngOnInit() {
         this.loadAll();
     }
 
     loadAll() {
-        this.taskService.getAll().subscribe(result => {
+        this.taskService.getAllByProjectId(this.parentProject.id).subscribe(result => {
             this.tasks = result.json() as Task[];
         }, error => console.error(error));
     }

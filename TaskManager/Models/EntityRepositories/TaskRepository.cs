@@ -23,6 +23,15 @@ namespace TaskManager.Models.EntityRepositories
                 .ToList();
         }
 
+        public IEnumerable<Entities.Task> GetAllByProjectId(int parentProjectId)
+        {
+            return _TaskManagerDbContext.Tasks
+                .Include(task => task.Reporter)
+                .Include(task => task.Assignee)
+                .Where(task => task.ParentProject.Id == parentProjectId)
+                .ToList();
+        }
+
         public Entities.Task GetWithRelatedDataIncluded(int id)
         {
             return _TaskManagerDbContext.Tasks

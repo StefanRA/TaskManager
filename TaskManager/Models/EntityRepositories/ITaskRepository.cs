@@ -9,5 +9,6 @@ namespace TaskManager.Models.EntityRepositories
     {
         Entities.Task GetWithRelatedDataIncluded(int id);
         IEnumerable<Entities.Task> GetAllWithRelatedDataIncluded();
+        IEnumerable<Entities.Task> GetAllByProjectId(int id);
     }
 }

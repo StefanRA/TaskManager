@@ -1,4 +1,6 @@
-﻿export class Task {
+﻿import { Project } from '../project/project.model';
+
+export class Task {
     constructor(
         public id?: number,
         public name?: string,
@@ -7,6 +9,6 @@
         public dueDate?: Date,
         public reporter?: any,
         public assignee?: any,
-        public parentProject?: any
+        public parentProject?: Project
     ) { }
 }

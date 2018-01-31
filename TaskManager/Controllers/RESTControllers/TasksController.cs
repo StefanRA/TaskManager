@@ -23,7 +23,13 @@ namespace TaskManager.Controllers.RESTControllers
         {
             return _taskRepository.GetAllWithRelatedDataIncluded();
         }
-        
+
+        [HttpGet("byProject/{projectId}")]
+        public IEnumerable<Models.Entities.Task> GetAllByProjectId(int projectId)
+        {
+            return _taskRepository.GetAllByProjectId(projectId);
+        }
+
         [HttpGet("{id}")]
         public Models.Entities.Task Get(int id)
         {
