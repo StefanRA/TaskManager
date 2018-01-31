@@ -1,0 +1,32 @@
+<div class="comments-container">
+    <h1>Comentarii</h1>
+    <hr>
+    <div class="add-comment-container">
+        <textarea name="comment" id="field_comment" [(ngModel)]="newComment.comment"></textarea>
+        <button class="comment-button" (click)="saveComment()">
+            Adauga comentariu
+        </button>
+    </div>
+    <hr>
+    <p *ngIf="comments.length == 0">Nu există comentarii de afișat</p>
+    <ul *ngIf="comments.length != 0" id="comments-list" class="comments-list">
+        <li *ngFor="let comment of comments">
+            <div class="comment-main-level">
+                <!-- Avatar -->
+                <div class="comment-avatar"><img src="http://www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-rainbow-unicorn.png" alt=""></div>
+                <!-- Contenedor del Comentario -->
+                <div class="comment-box">
+                    <div class="comment-head">
+                        <h6 class="comment-name by-author" *ngIf="comment.poster">Cineva</h6>
+                        <h6 class="comment-name by-author" *ngIf="!comment.poster">Membru</h6>
+                        <span>{{comment.creationDate | date:'medium'}}</span>
+                        <i class="fa fa-close" (click)="removeComment(comment)"></i>
+                    </div>
+                    <div class="comment-content">
+                        {{comment.content}}
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

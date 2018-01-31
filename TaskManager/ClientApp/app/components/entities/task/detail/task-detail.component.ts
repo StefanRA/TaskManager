@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Rx';
 
 import { Task } from '../task.model';
 import { TaskService } from '../task.service';
+import { TaskCommentComponent } from '../../task-comment/task-comment.component';
 
 @Component({
     selector: 'task-detail',

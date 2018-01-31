@@ -32,6 +32,8 @@
     <None Remove="ClientApp\app\components\entities\entity-administration\entity-administration.route.ts" />
     <None Remove="ClientApp\app\components\entities\entity.module.ts" />
     <None Remove="ClientApp\app\components\entities\project\detail\project-detail.component.ts" />
+    <None Remove="ClientApp\app\components\entities\task-comment\task-comment.model.ts" />
+    <None Remove="ClientApp\app\components\entities\task-comment\task-comment.module.ts" />
     <None Remove="ClientApp\app\components\entities\user\detail\user-detail.component.ts" />
     <None Remove="ClientApp\app\components\entities\user\user.component.ts" />
     <None Remove="ClientApp\app\components\entities\user\user.model.ts" />
@@ -52,6 +54,8 @@
     <TypeScriptCompile Include="ClientApp\app\components\entities\entity-administration\entity-administration.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\entity-administration\entity-administration.route.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\entity.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\entities\task-comment\task-comment.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\entities\task-comment\task-comment.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\task\detail\task-detail.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\task\task.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\task\task.model.ts" />

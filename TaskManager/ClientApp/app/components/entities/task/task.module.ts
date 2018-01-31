@@ -7,6 +7,7 @@ import { TaskComponent } from './task.component';
 import { TaskDetailComponent } from './detail/task-detail.component';
 import { TaskService } from './task.service';
 import { taskRoute } from './task.route';
+import { TaskCommentModule } from '../task-comment/task-comment.module'
 
 const ENTITY_STATES = [
     ...taskRoute,
@@ -15,6 +16,7 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         SharedLibrariesModule,
+        TaskCommentModule,
         RouterModule.forRoot(ENTITY_STATES)
     ],
     declarations: [

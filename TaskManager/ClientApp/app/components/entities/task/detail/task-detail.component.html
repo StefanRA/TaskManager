@@ -5,6 +5,7 @@
         <div class='col-sm-8'>
             <p style="font-weight: bold">Description</p>
             <span>{{ task.description }}</span>
+            <task-comment [comments]="task.comments"></task-comment>
         </div>
         <div class='col-sm-4 taskDetailSidebar'>
             <p><b>Creation date:</b> {{ task.creationDate | date:'medium' }}</p>
