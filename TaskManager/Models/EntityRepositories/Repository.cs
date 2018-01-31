@@ -16,40 +16,40 @@ namespace TaskManager.Models.EntityRepositories
             _dbContext = dbContext;
         }
 
-        public TEntity Get(int id)
+        public virtual TEntity Get(int id)
         {
             return _dbContext.Set<TEntity>().Find(id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return _dbContext.Set<TEntity>().ToList();
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
             return _dbContext.Set<TEntity>().Where(predicate);
         }
 
-        public void Add(TEntity entity)
+        public virtual void Add(TEntity entity)
         {
             _dbContext.Set<TEntity>().Add(entity);
             _dbContext.SaveChanges();
         }
 
-        public void AddRange(IEnumerable<TEntity> entities)
+        public virtual void AddRange(IEnumerable<TEntity> entities)
         {
             _dbContext.Set<TEntity>().AddRange(entities);
             _dbContext.SaveChanges();
         }
 
-        public void Remove(TEntity entity)
+        public virtual void Remove(TEntity entity)
         {
             _dbContext.Set<TEntity>().Remove(entity);
             _dbContext.SaveChanges();
         }
 
-        public void RemoveRange(IEnumerable<TEntity> entities)
+        public virtual void RemoveRange(IEnumerable<TEntity> entities)
         {
             _dbContext.Set<TEntity>().RemoveRange(entities);
             _dbContext.SaveChanges();

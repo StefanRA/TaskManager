@@ -7,6 +7,7 @@ import { ProjectComponent } from './project.component';
 import { ProjectDetailComponent } from './detail/project-detail.component';
 import { ProjectService } from './project.service';
 import { projectRoute } from './project.route';
+import { TaskModule } from '../task/task.module';
 
 const ENTITY_STATES = [
     ...projectRoute,
@@ -15,6 +16,7 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         SharedLibrariesModule,
+        TaskModule,
         RouterModule.forRoot(ENTITY_STATES)
     ],
     declarations: [

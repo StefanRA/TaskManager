@@ -33,6 +33,13 @@ namespace TaskManager.Models.EntityRepositories
                 .FirstOrDefault(task => task.Id == id);
         }
 
+        public override void Add(Entities.Task entity)
+        {
+            _dbContext.Set<Entities.Task>().Add(entity);
+            _dbContext.Entry(entity.ParentProject).State = EntityState.Unchanged;
+            _dbContext.SaveChanges();
+        }
+
         public TaskManagerDbContext _TaskManagerDbContext
         {
             get { return _dbContext as TaskManagerDbContext; }

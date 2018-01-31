@@ -8,7 +8,13 @@
         </div>
         <div class='col-sm-4 taskDetailSidebar'>
             <p class="text-divider">General information</p>
-            <p><b>Project: </b><a [routerLink]="['/project', task.parentProject.id ]">{{ task.parentProject.name }}</a></p>
+            <p>
+                <b>Project: </b>
+                <span *ngIf="task.parentProject">
+                    <a [routerLink]="['/project', task.parentProject.id ]">{{ task.parentProject.name }}</a>
+                </span>
+                <span *ngIf="!task.parentProject">None</span>
+            </p>
             <p class="text-divider">Important dates</p>
             <p><b>Creation date: </b> {{task.creationDate | date:'medium'}}</p>
             <p><b>Due date: </b> {{task.dueDate | date:'medium'}}</p>

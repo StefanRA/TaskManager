@@ -8,6 +8,6 @@
         </div>
         <span *ngIf="!project.owner">No owner</span>
     </div>
-
+    <task [parentProject]="project"></task>
     <button (click)="previousState()">Back</button>
 </div>

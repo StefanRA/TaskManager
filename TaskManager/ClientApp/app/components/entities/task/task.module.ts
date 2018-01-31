@@ -25,6 +25,9 @@ const ENTITY_STATES = [
     ],
     providers: [
         TaskService
+    ],
+    exports: [
+        TaskComponent
     ]
 })
 export class TaskModule { }

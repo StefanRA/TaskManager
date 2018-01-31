@@ -1,10 +1,12 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, Input } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import { Task } from './task.model';
 import { TaskService } from './task.service';
 import { UserService } from '../user/user.service';
+
+import { Project } from '../project/project.model';
 
 @Component({
     selector: 'task',
@@ -14,6 +16,7 @@ import { UserService } from '../user/user.service';
 export class TaskComponent {
     public tasks: Task[];
     public newTask: Task;
+    @Input('parentProject') public parentProject: Project;
 
     constructor(
         private taskService: TaskService,
@@ -39,6 +42,7 @@ export class TaskComponent {
         }, error => console.error(error));
         this.newTask.creationDate = new Date();
         this.newTask.dueDate = new Date();
+        this.newTask.parentProject = this.parentProject;
 
         const copy = this.convert(this.newTask);
         this.taskService.create(this.newTask).subscribe(result => { this.newTask = result.json() }, error => console.error(error));
