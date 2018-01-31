@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     errors: string;
     isRequesting: boolean;
     submitted: boolean = false;
-    credentials: Credentials = { email: '', password: '' };
+    credentials: Credentials = { userName: '', password: '' };
 
     constructor(private loginService: LoginService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.subscription = this.activatedRoute.queryParams.subscribe(
             (param: any) => {
                 this.brandNew = param['brandNew'];
-                this.credentials.email = param['email'];
+                this.credentials.userName = param['userName'];
             });
     }
 
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.isRequesting = true;
         this.errors = '';
         if (valid) {
-            this.loginService.login(value.email, value.password)
+            this.loginService.login(value.userName, value.password)
                 .finally(() => this.isRequesting = false)
                 .subscribe(
                 result => {

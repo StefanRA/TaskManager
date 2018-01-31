@@ -36,12 +36,12 @@ namespace TaskManager.Controllers.RESTControllers
         [HttpPost]
         public async Task<object> Login([FromBody] LoginDTO model)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+            var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, false, false);
 
             if (result.Succeeded)
             {
-                var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Email);
-                return await GenerateJwtToken(model.Email, appUser);
+                var appUser = _userManager.Users.SingleOrDefault(r => r.UserName == model.UserName);
+                return await GenerateJwtToken(model.UserName, appUser);
             }
 
             throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
@@ -68,11 +68,11 @@ namespace TaskManager.Controllers.RESTControllers
             throw new Exception(result.ToString());
         }
 
-        private async Task<object> GenerateJwtToken(string email, User user)
+        private async Task<object> GenerateJwtToken(string userName, User user)
         {
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, email),
+                new Claim(JwtRegisteredClaimNames.Sub, userName),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(ClaimTypes.NameIdentifier, user.Id)
             };

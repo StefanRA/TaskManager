@@ -19,11 +19,11 @@ export class LoginService {
     constructor(private http: Http) {
     }
 
-    login(email: string, password: string) {
+    login(userName: string, password: string) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        return this.http.post("api/accounts/login", JSON.stringify({ email, password }), { headers })
+        return this.http.post("api/accounts/login", JSON.stringify({ userName, password }), { headers })
             .map(user => {
                 // login successful if there's a jwt token in the response
                 if (user) {
