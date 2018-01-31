@@ -6,6 +6,7 @@
         public creationDate?: Date,
         public dueDate?: Date,
         public reporter?: any,
-        public assignee?: any
+        public assignee?: any,
+        public parentProject?: any
     ) { }
 }

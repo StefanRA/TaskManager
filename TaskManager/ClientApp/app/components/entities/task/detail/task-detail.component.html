@@ -1,13 +1,13 @@
 ﻿<div *ngIf="task">
     <h1>{{ task.name }}</h1>
-
+    <hr>
     <div class="taskDetailContainer">
         <div class='col-sm-8'>
             <p style="font-weight: bold">Description</p>
             <span>{{ task.description }}</span>
-            <task-comment [comments]="task.comments"></task-comment>
         </div>
         <div class='col-sm-4 taskDetailSidebar'>
+            <p><b>Project:</b><a [routerLink]="['/project', task.parentProject.id ]">{{ task.parentProject.name }}</a></p>
             <p><b>Creation date:</b> {{ task.creationDate | date:'medium' }}</p>
             <p><b>Due date:</b> {{ task.dueDate | date:'medium' }}</p>
             <span><b>Reporter:</b></span>
@@ -17,6 +17,6 @@
             <span *ngIf="!task.reporter">None</span>
         </div>
     </div>
-
-    <button (click)="previousState()">Back</button>
+    <hr>
+    <task-comment [comments]="task.comments"></task-comment>
 </div>

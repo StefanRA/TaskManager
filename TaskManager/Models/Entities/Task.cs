@@ -14,6 +14,7 @@ namespace TaskManager.Models.Entities
         public DateTime DueDate { get; set; }
         public User Reporter { get; set; }
         public User Assignee { get; set; }
+        public Project ParentProject { get; set; }
         public ICollection<TaskComment> Comments { get; set; }
     }
 }

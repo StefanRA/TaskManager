@@ -26,6 +26,7 @@ namespace TaskManager.Models.EntityRepositories
         public Entities.Task GetWithRelatedDataIncluded(int id)
         {
             return _TaskManagerDbContext.Tasks
+                .Include(task => task.ParentProject)
                 .Include(task => task.Reporter)
                 .Include(task => task.Assignee)
                 .Include(task => task.Comments)
