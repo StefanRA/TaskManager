@@ -3,7 +3,8 @@
         public id?: number,
         public content?: string,
         public creationDate?: any,
-        public poster?: any
+        public poster?: any,
+        public parentTask?: any
     ) {
     }
 }

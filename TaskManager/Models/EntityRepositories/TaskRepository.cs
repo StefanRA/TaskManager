@@ -38,7 +38,6 @@ namespace TaskManager.Models.EntityRepositories
                 .Include(task => task.ParentProject)
                 .Include(task => task.Reporter)
                 .Include(task => task.Assignee)
-                .Include(task => task.Comments)
                 .FirstOrDefault(task => task.Id == id);
         }
 

@@ -25,7 +25,7 @@ namespace TaskManager.Controllers.RESTControllers
         }
 
         [HttpGet("byTask/{taskId}")]
-        public IEnumerable<Models.Entities.TaskComment> GetAllByProjectId(int taskId)
+        public IEnumerable<Models.Entities.TaskComment> GetAllByTaskId(int taskId)
         {
             return _taskCommentRepository.GetAllByTaskId(taskId);
         }
@@ -37,14 +37,14 @@ namespace TaskManager.Controllers.RESTControllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]Models.Entities.TaskComment task)
+        public IActionResult Post([FromBody]Models.Entities.TaskComment taskComment)
         {
-            if (task == null)
+            if (taskComment == null)
             {
                 return BadRequest();
             }
-            _taskCommentRepository.Add(task);
-            return new ObjectResult(task);
+            _taskCommentRepository.Add(taskComment);
+            return new ObjectResult(taskComment);
         }
 
         [HttpPut("{id}")]

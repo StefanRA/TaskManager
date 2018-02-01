@@ -8,6 +8,13 @@ import { FormsModule } from '@angular/forms';
         CommonModule,
         HttpModule,
         FormsModule
+    ],
+    providers: [
+        { provide: 'SERVER_URL', useFactory: getBaseUrl }
     ]
 })
-export class SharedLibrariesModule {}
+export class SharedLibrariesModule { }
+
+export function getBaseUrl() {
+    return document.getElementsByTagName('base')[0].href;
+}

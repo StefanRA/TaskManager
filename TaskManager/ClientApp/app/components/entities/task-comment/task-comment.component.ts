@@ -6,6 +6,8 @@ import {Observable} from 'rxjs/Rx';
 import { TaskComment } from './task-comment.model';
 import { TaskCommentService } from '../task-comment/task-comment.service';
 
+import { Task } from '../task/task.model';
+
 @Component({
     selector: 'task-comment',
     templateUrl: './task-comment.component.html',
@@ -16,7 +18,8 @@ import { TaskCommentService } from '../task-comment/task-comment.service';
 
 export class TaskCommentComponent implements OnInit, OnChanges, OnDestroy {
     newComment: TaskComment;
-    @Input('comments') comments: TaskComment[];
+    @Input('parentTask') parentTask: Task;
+    comments: TaskComment[];
     isSaving: boolean;
 
     constructor(
@@ -26,6 +29,7 @@ export class TaskCommentComponent implements OnInit, OnChanges, OnDestroy {
 
     ngOnInit() {
         this.newComment = new TaskComment();
+        this.loadComments();
     }
 
     ngOnChanges(changes: SimpleChanges) {
@@ -33,10 +37,11 @@ export class TaskCommentComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnDestroy() {
+        this.newComment.content = 'fuck';
     }
 
     loadComments() {
-        this.commentService.getAll().subscribe(
+        this.commentService.getAllByTaskId(this.parentTask.id).subscribe(
             result => {
                 this.comments = result.json() as TaskComment[];
             }, error => console.error(error));
@@ -44,13 +49,27 @@ export class TaskCommentComponent implements OnInit, OnChanges, OnDestroy {
 
     saveComment() {
         this.newComment.creationDate = new Date();
+        this.newComment.parentTask = this.parentTask;
         this.commentService.create(this.newComment).subscribe(
-            result => this.comments.push(result)
-        );
-        this.newComment = new TaskComment();
-        this.loadComments();
+            (result: TaskComment) => this.onSaveSuccess(result),
+            (result: Response) => this.onSaveError());
     }
-    
+
+    private subscribeToSaveResponse(result: Observable<TaskComment>) {
+        result.subscribe(
+            (result: TaskComment) => this.onSaveSuccess(result),
+            (result: Response) => this.onSaveError()
+        );
+    }
+
+    private onSaveSuccess(result: TaskComment) {
+        this.comments.push(result);
+        this.newComment = new TaskComment();
+    }
+
+    private onSaveError() {
+        this.newComment.content = 'fail';
+    }
 
     removeComment(taskComment: TaskComment) {
         this.commentService.delete(taskComment.id).subscribe((response) => {

@@ -6,9 +6,11 @@ import { TaskComment } from './task-comment.model';
 
 @Injectable()
 export class TaskCommentService {
-    private resourceUrl = 'api/taskComments';
+    private resourceUrl: string;
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, @Inject('SERVER_URL') baseUrl: string) {
+        this.resourceUrl = baseUrl + 'api/taskComments'
+    }
 
     create(taskComment: TaskComment): Observable<TaskComment> {
         const copy = this.convert(taskComment);
@@ -22,8 +24,8 @@ export class TaskCommentService {
         return this.http.get(this.resourceUrl);
     }
 
-    getAllByProjectId(taskId: any): Observable<Response> {
-        return this.http.get(`${this.resourceUrl}/${taskId}`);
+    getAllByTaskId(taskId: any): Observable<Response> {
+        return this.http.get(`${this.resourceUrl}/byTask/${taskId}`);
     }
 
     find(id: number): Observable<Response> {
