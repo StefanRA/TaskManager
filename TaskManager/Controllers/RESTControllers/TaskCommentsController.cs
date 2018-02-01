@@ -37,7 +37,7 @@ namespace TaskManager.Controllers.RESTControllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]Models.Entities.TaskComment taskComment)
+        public IActionResult Create([FromBody]Models.Entities.TaskComment taskComment)
         {
             if (taskComment == null)
             {

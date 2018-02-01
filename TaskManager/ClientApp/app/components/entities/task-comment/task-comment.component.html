@@ -8,8 +8,8 @@
         </button>
     </div>
     <hr>
-    <p *ngIf="!comments">Nu există comentarii de afișat</p>
-    <ul *ngIf="comments" id="comments-list" class="comments-list">
+    <p *ngIf="comments && comments.length == 0">Nu există comentarii de afișat</p>
+    <ul *ngIf="comments && comments.length > 0" id="comments-list" class="comments-list">
         <li *ngFor="let comment of comments">
             <div class="comment-main-level">
                 <!-- Avatar -->

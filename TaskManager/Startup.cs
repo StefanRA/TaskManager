@@ -32,7 +32,8 @@ namespace TaskManager
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<TaskManagerDbContext>(opt => opt.UseSqlServer(@"Server=.\;Database=TaskManager;Trusted_Connection=True;MultipleActiveResultSets=true"));
-            services.AddMvc();
+            services.AddMvc()
+                .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<ITaskCommentRepository, TaskCommentRepository>();
