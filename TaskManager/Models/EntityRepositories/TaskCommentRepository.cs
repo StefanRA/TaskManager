@@ -13,5 +13,17 @@ namespace TaskManager.Models.EntityRepositories
             : base(dbContext)
         {
         }
+
+        public IEnumerable<TaskComment> GetAllByTaskId(int id)
+        {
+            return _TaskManagerDbContext.TaskComments
+                    .Where(comment => comment.Task.Id == id)
+                    .ToList();
+        }
+
+        public TaskManagerDbContext _TaskManagerDbContext
+        {
+            get { return _dbContext as TaskManagerDbContext; }
+        }
     }
 }

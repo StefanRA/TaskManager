@@ -2,7 +2,7 @@
     <h1>Comentarii</h1>
     <hr>
     <div class="add-comment-container">
-        <textarea name="comment" id="field_comment" [(ngModel)]="newComment.comment"></textarea>
+        <textarea name="comment" id="field_comment" [(ngModel)]="newComment.content"></textarea>
         <button class="comment-button" (click)="saveComment()">
             Adauga comentariu
         </button>
@@ -20,7 +20,7 @@
                         <h6 class="comment-name by-author" *ngIf="comment.poster">Cineva</h6>
                         <h6 class="comment-name by-author" *ngIf="!comment.poster">Membru</h6>
                         <span>{{comment.creationDate | date:'medium'}}</span>
-                        <i class="fa fa-close" (click)="removeComment(comment)"></i>
+                        <i class="glyphicon glyphicon-remove" (click)="removeComment(comment)"></i>
                     </div>
                     <div class="comment-content">
                         {{comment.content}}

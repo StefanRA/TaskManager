@@ -6,7 +6,8 @@ using TaskManager.Models.Entities;
 
 namespace TaskManager.Models.EntityRepositories
 {
-    interface ITaskCommentRepository : IRepository<TaskComment>
+    public interface ITaskCommentRepository : IRepository<TaskComment>
     {
+        IEnumerable<Entities.TaskComment> GetAllByTaskId(int id);
     }
 }

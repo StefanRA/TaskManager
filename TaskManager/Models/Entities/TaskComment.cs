@@ -11,5 +11,6 @@ namespace TaskManager.Models.Entities
         public string Content { get; set; }
         public DateTime CreationDate { get; set; }
         public User Poster { get; set; }
+        public Entities.Task Task { get; set; }
     }
 }

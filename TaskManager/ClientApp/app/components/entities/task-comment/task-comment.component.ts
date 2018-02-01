@@ -4,6 +4,7 @@ import {Response} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 
 import { TaskComment } from './task-comment.model';
+import { TaskCommentService } from '../task-comment/task-comment.service';
 
 @Component({
     selector: 'task-comment',
@@ -18,7 +19,9 @@ export class TaskCommentComponent implements OnInit, OnChanges, OnDestroy {
     @Input('comments') comments: TaskComment[];
     isSaving: boolean;
 
-    constructor() {
+    constructor(
+        private commentService: TaskCommentService
+        ) {
     }
 
     ngOnInit() {
@@ -33,12 +36,25 @@ export class TaskCommentComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     loadComments() {
+        this.commentService.getAll().subscribe(
+            result => {
+                this.comments = result.json() as TaskComment[];
+            }, error => console.error(error));
     }
 
     saveComment() {
+        this.newComment.creationDate = new Date();
+        this.commentService.create(this.newComment).subscribe(
+            result => this.comments.push(result)
+        );
+        this.newComment = new TaskComment();
+        this.loadComments();
     }
     
 
-    removeComment(comment: Comment) {
+    removeComment(taskComment: TaskComment) {
+        this.commentService.delete(taskComment.id).subscribe((response) => {
+            this.comments.splice(this.comments.indexOf(taskComment), 1);
+        });
     }
 }
