@@ -1,14 +1,15 @@
 <div class="comments-container">
-    <h1>Comentarii</h1>
+    <p style="font-weight: bold;">Comments</p>
     <hr>
     <div class="add-comment-container">
         <textarea name="comment" id="field_comment" [(ngModel)]="newComment.content"></textarea>
         <button class="comment-button" (click)="saveComment()">
-            Adauga comentariu
+            Add comment
         </button>
     </div>
     <hr>
-    <p *ngIf="comments && comments.length == 0">Nu există comentarii de afișat</p>
+    <p *ngIf="!comments">Loading comments for this task ...</p>
+    <p *ngIf="comments && comments.length == 0">No comments have been added to this task.</p>
     <ul *ngIf="comments && comments.length > 0" id="comments-list" class="comments-list">
         <li *ngFor="let comment of comments">
             <div class="comment-main-level">

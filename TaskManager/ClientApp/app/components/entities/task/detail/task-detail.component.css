@@ -66,6 +66,8 @@
 
 .text-divider {
     text-align: center;
-    border-bottom: 1px solid lightgray;
+    background: #222;
+    color: white;
+    border-radius: 3px;
     font-weight: bold;
 }
