@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
@@ -20,6 +20,10 @@ export class ProjectComponent {
         private userService: UserService
         )
     {
+    }
+
+    ngOnInit() {
+        this.newProject = new Project();
         this.loadAll();
     }
 
@@ -30,9 +34,9 @@ export class ProjectComponent {
     }
 
     add() {
-        this.newProject = new Project();
-        this.newProject.name = "DAW Project";
-        this.newProject.description = "Proiectul de la DAW";
+        if (!this.newProject.name || this.newProject.name.length == 0) {
+            return;
+        }
         this.userService.find(1).subscribe(result => {
             this.newProject.owner = result;
         }, error => console.error(error));
