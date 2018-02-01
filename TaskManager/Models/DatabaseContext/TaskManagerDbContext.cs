@@ -18,6 +18,16 @@ namespace TaskManager.Models.DatabaseContext
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<Entities.Task>()
+                .HasMany<Entities.TaskComment>(t => t.Comments)
+                .WithOne(tc => tc.ParentTask)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Entities.Project>()
+                .HasMany<Entities.Task>(project => project.Tasks)
+                .WithOne(task => task.ParentProject)
+                .OnDelete(DeleteBehavior.Cascade);
         }
 
         public DbSet<Project> Projects { get; set; }

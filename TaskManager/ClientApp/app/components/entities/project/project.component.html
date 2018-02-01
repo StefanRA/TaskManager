@@ -6,7 +6,8 @@
 
 <button (click)="add()">Add a project</button>
 
-<table class='table' *ngIf="projects">
+<p *ngIf="!projects || projects.length == 0">No projects have been yet added.</p>
+<table class='table' *ngIf="projects && projects.length > 0">
     <thead>
         <tr>
             <th>Id</th>

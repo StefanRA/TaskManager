@@ -6,9 +6,11 @@ import { User } from './user.model';
 
 @Injectable()
 export class UserService {
-    private resourceUrl = 'api/users';
+    private resourceUrl: string;
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, @Inject('SERVER_URL') baseUrl: string) {
+        this.resourceUrl = baseUrl + 'api/users'
+    }
 
     create(user: User): Observable<Response> {
         const copy = this.convert(user);
@@ -26,18 +28,12 @@ export class UserService {
     find(id: number): Observable<Response> {
         return this.http.get(`${this.resourceUrl}/${id}`);
     }
-
-    /**
-     * Convert a returned JSON object to City.
-     */
+    
     private convertItemFromServer(json: any): User {
         const entity: User = Object.assign(new User(), json);
         return entity;
     }
-
-    /**
-     * Convert a City to a JSON which can be sent to the server.
-     */
+    
     private convert(user: User): User {
         const copy: User = Object.assign({}, user);
         return copy;

@@ -53,9 +53,9 @@ export class TaskCommentComponent implements OnInit, OnChanges, OnDestroy {
         }
         this.newComment.creationDate = new Date();
         this.newComment.parentTask = this.parentTask;
-        this.commentService.create(this.newComment).subscribe(
-            (result: TaskComment) => this.onSaveSuccess(result),
-            (result: Response) => this.onSaveError());
+        this.subscribeToSaveResponse(
+            this.commentService.create(this.newComment)
+            );
     }
 
     private subscribeToSaveResponse(result: Observable<TaskComment>) {

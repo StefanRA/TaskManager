@@ -6,14 +6,18 @@ import { Task } from './task.model';
 
 @Injectable()
 export class TaskService {
-    private resourceUrl = 'api/tasks';
-    private resUrl = 'api/tasks/byProject';
+    private resourceUrl: string;
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, @Inject('SERVER_URL') baseUrl: string) {
+        this.resourceUrl = baseUrl + 'api/tasks'
+    }
 
-    create(task: Task): Observable<Response> {
-        const copy = this.convert(task);
-        return this.http.post(this.resourceUrl, copy);
+    create(taskComment: Task): Observable<Task> {
+        const copy = this.convert(taskComment);
+        return this.http.post(this.resourceUrl, copy).map((res: Response) => {
+            const jsonResponse = res.json();
+            return this.convertItemFromServer(jsonResponse);
+        });
     }
 
     getAll(): Observable<Response> {
@@ -21,7 +25,7 @@ export class TaskService {
     }
 
     getAllByProjectId(projectId: any): Observable<Response> {
-        return this.http.get(`${this.resUrl}/${projectId}`);
+        return this.http.get(`${this.resourceUrl}/byProject/${projectId}`);
     }
 
     find(id: number): Observable<Response> {
@@ -37,18 +41,12 @@ export class TaskService {
             return res.json();
         });
     }
-
-    /**
-     * Convert a returned JSON object to City.
-     */
+    
     private convertItemFromServer(json: any): Task {
         const entity: Task = Object.assign(new Task(), json);
         return entity;
     }
-
-    /**
-     * Convert a City to a JSON which can be sent to the server.
-     */
+    
     private convert(user: Task): Task {
         const copy: Task = Object.assign({}, user);
         return copy;

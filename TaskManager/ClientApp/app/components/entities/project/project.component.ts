@@ -36,11 +36,25 @@ export class ProjectComponent {
         this.userService.find(1).subscribe(result => {
             this.newProject.owner = result;
         }, error => console.error(error));
+        
+        this.subscribeToCreateResponse(
+            this.projectService.create(this.newProject)
+            );
+    }
 
-        const copy = this.convert(this.newProject);
-        //this.http.post(this.resourceUrl, copy).subscribe(result => { this.newUser = result.json() },error=>console.error(error));
-        this.projectService.create(this.newProject).subscribe(result => { this.newProject = result.json() }, error => console.error(error));
-        this.projects.push(this.newProject);
+    private subscribeToCreateResponse(result: Observable<Project>) {
+        result.subscribe(
+            (result: Project) => this.onCreateSuccess(result),
+            (result: Response) => this.onCreateError()
+        );
+    }
+
+    private onCreateSuccess(result: Project) {
+        this.projects.push(result);
+        this.newProject = new Project();
+    }
+
+    private onCreateError() {
     }
 
     private convert(project: Project): Project {

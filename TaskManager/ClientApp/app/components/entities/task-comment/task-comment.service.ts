@@ -41,18 +41,12 @@ export class TaskCommentService {
             return res.json();
         });
     }
-
-    /**
-     * Convert a returned JSON object to City.
-     */
+    
     private convertItemFromServer(json: any): TaskComment {
         const entity: TaskComment = Object.assign(new TaskComment(), json);
         return entity;
     }
-
-    /**
-     * Convert a City to a JSON which can be sent to the server.
-     */
+    
     private convert(user: TaskComment): TaskComment {
         const copy: TaskComment = Object.assign({}, user);
         return copy;

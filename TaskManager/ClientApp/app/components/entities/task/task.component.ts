@@ -46,10 +46,10 @@ export class TaskComponent {
         this.newTask.creationDate = new Date();
         this.newTask.dueDate = new Date();
         this.newTask.parentProject = this.parentProject;
-
-        const copy = this.convert(this.newTask);
-        this.taskService.create(this.newTask).subscribe(result => { this.newTask = result.json() }, error => console.error(error));
-        this.tasks.push(this.newTask);
+        
+        this.subscribeToCreateResponse(
+            this.taskService.create(this.newTask)
+            );
     }
 
     private convert(project: Task): Task {
@@ -60,5 +60,20 @@ export class TaskComponent {
     public remove(project: Task) {
         this.taskService.delete(project.id).subscribe((res) => { });
         this.tasks.splice(this.tasks.indexOf(project), 1);
+    }
+
+    private subscribeToCreateResponse(result: Observable<Task>) {
+        result.subscribe(
+            (result: Task) => this.onCreateSuccess(result),
+            (result: Response) => this.onCreateError()
+        );
+    }
+
+    private onCreateSuccess(result: Task) {
+        this.tasks.push(result);
+        this.newTask = new Task();
+    }
+
+    private onCreateError() {
     }
 }
