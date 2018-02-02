@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 
 import { UserRegistration } from './register.model';
-import { RegisterService } from './register.service';
+import { AccountService } from '../../shared/user/account.service';
 
 @Component({
     selector: 'register',
@@ -16,7 +16,7 @@ export class RegisterComponent {
     isRequesting: boolean;
     submitted: boolean = false;
 
-    constructor(private registerService: RegisterService, private router: Router) { }
+    constructor(private accountService: AccountService, private router: Router) { }
 
     ngOnInit() {
     }
@@ -26,12 +26,12 @@ export class RegisterComponent {
         this.isRequesting = true;
         this.errors = '';
         if (valid) {
-            this.registerService.register(value.userName, value.email, value.password, value.firstName, value.lastName)
+            this.accountService.register(value.userName, value.email, value.password, value.firstName, value.lastName)
                 .finally(() => this.isRequesting = false)
                 .subscribe(
                     result => {
                         if (result) {
-                            this.router.navigate(['/home']);
+                            this.router.navigate(['/login']);
                         }
                     },
                     errors => this.errors = errors

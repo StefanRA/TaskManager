@@ -24,10 +24,8 @@
   <ItemGroup>
     <None Remove="ClientApp\app\components\authentication\authentication.module.ts" />
     <None Remove="ClientApp\app\components\authentication\login\login.model.ts" />
-    <None Remove="ClientApp\app\components\authentication\login\login.service.ts" />
     <None Remove="ClientApp\app\components\authentication\register.component.ts" />
     <None Remove="ClientApp\app\components\authentication\register\register.model.ts" />
-    <None Remove="ClientApp\app\components\authentication\register\register.service.ts" />
     <None Remove="ClientApp\app\components\entities\entity-administration\entity-administration.module.ts" />
     <None Remove="ClientApp\app\components\entities\entity-administration\entity-administration.route.ts" />
     <None Remove="ClientApp\app\components\entities\entity.module.ts" />
@@ -50,10 +48,8 @@
     <TypeScriptCompile Include="ClientApp\app\components\authentication\authentication.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\authentication\login\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\authentication\login\login.model.ts" />
-    <TypeScriptCompile Include="ClientApp\app\components\authentication\login\login.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\authentication\register\register.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\authentication\register\register.model.ts" />
-    <TypeScriptCompile Include="ClientApp\app\components\authentication\register\register.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\entity-administration\entity-administration.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\entity-administration\entity-administration.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\entity-administration\entity-administration.route.ts" />
