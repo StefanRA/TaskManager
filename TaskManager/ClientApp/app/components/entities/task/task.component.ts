@@ -26,6 +26,7 @@ export class TaskComponent {
     }
 
     ngOnInit() {
+        this.newTask = new Task();
         this.loadAll();
     }
 
@@ -36,15 +37,11 @@ export class TaskComponent {
     }
 
     add() {
-        this.newTask = new Task();
-        this.newTask.name = "Create Task entity";
-        this.newTask.description = "Create the Task entity and implement CRUD operations for it";
         this.userService.find(1).subscribe(result => {
             this.newTask.reporter = result;
             this.newTask.assignee = result;
         }, error => console.error(error));
         this.newTask.creationDate = new Date();
-        this.newTask.dueDate = new Date();
         this.newTask.parentProject = this.parentProject;
         
         this.subscribeToCreateResponse(
