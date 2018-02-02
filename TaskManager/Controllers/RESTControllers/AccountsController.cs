@@ -20,16 +20,19 @@ namespace TaskManager.Controllers.RESTControllers
     {
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
 
         public AccountsController(
             SignInManager<User> signInManager,
             UserManager<User> userManager,
+            RoleManager<IdentityRole> roleManager,
             IConfiguration configuration
             )
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _roleManager = roleManager;
             _configuration = configuration;
         }
 
@@ -61,6 +64,7 @@ namespace TaskManager.Controllers.RESTControllers
 
             if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, "User");
                 await _signInManager.SignInAsync(user, false);
                 return await GenerateJwtToken(model.Email, user);
             }
