@@ -11,6 +11,8 @@ import { AccountService } from '../shared/user/account.service';
 export class NavMenuComponent implements OnInit, OnDestroy {
     isLoggedIn: boolean;
     subscription: Subscription;
+    userName: string;
+    userNameSubscription: Subscription;
 
     constructor(private userService: AccountService) {
     }
@@ -21,10 +23,10 @@ export class NavMenuComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.subscription = this.userService.authNavStatus$.subscribe(status => this.isLoggedIn = status);
+        this.userNameSubscription = this.userService.userNameObservable$.subscribe(status => this.userName = status);
     }
 
     ngOnDestroy() {
-        // prevent memory leak when component is destroyed
         this.subscription.unsubscribe();
     }
 }

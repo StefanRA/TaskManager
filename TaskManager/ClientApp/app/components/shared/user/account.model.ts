@@ -1,4 +1,4 @@
-﻿export class Account {
+﻿export class UserProfile {
     constructor(
         public id?: number,
         public userName?: string,
