@@ -19,14 +19,18 @@ namespace TaskManager.Models.EntityRepositories
         {
             return _TaskManagerDbContext.TaskComments
                     .Where(comment => comment.ParentTask.Id == id)
+                    .Include(comment => comment.Poster)
                     .ToList();
         }
 
         public override void Add(TaskComment entity)
         {
+            entity.ParentTask.ParentProject = null;
+            entity.ParentTask.Reporter = null;
+            entity.ParentTask.Assignee = null;
             _dbContext.Set<TaskComment>().Add(entity);
             _dbContext.Entry(entity.ParentTask).State = EntityState.Unchanged;
-            _dbContext.Entry(entity.ParentTask.ParentProject).State = EntityState.Unchanged;
+            _dbContext.Entry(entity.Poster).State = EntityState.Unchanged;
             _dbContext.SaveChanges();
         }
 

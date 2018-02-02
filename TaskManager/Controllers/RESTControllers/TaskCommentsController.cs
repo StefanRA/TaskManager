@@ -5,17 +5,22 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TaskManager.Models.Entities;
 using TaskManager.Models.EntityRepositories;
+using Microsoft.AspNetCore.Identity;
 
 namespace TaskManager.Controllers.RESTControllers
 {
     [Route("api/[controller]")]
     public class TaskCommentsController : Controller
     {
+        private readonly UserManager<User> _userManager;
         private ITaskCommentRepository _taskCommentRepository;
 
-        public TaskCommentsController(ITaskCommentRepository taskCommentRepository)
+        public TaskCommentsController(
+            ITaskCommentRepository taskCommentRepository,
+            UserManager<User> userManager)
         {
             _taskCommentRepository = taskCommentRepository;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -37,12 +42,19 @@ namespace TaskManager.Controllers.RESTControllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody]Models.Entities.TaskComment taskComment)
+        public async Task<IActionResult> Create([FromBody]Models.Entities.TaskComment taskComment)
         {
             if (taskComment == null)
             {
                 return BadRequest();
             }
+
+            if (taskComment.Poster != null)
+            {
+                var user = await _userManager.FindByNameAsync(taskComment.Poster.UserName);
+                taskComment.Poster = user;
+            }
+
             _taskCommentRepository.Add(taskComment);
             return new ObjectResult(taskComment);
         }

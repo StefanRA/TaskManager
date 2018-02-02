@@ -5,7 +5,8 @@ import {Observable} from 'rxjs/Rx';
 
 import { TaskComment } from './task-comment.model';
 import { TaskCommentService } from '../task-comment/task-comment.service';
-
+import { AccountService } from '../../shared/user/account.service';
+import { User } from '../user/user.model';
 import { Task } from '../task/task.model';
 
 @Component({
@@ -23,7 +24,8 @@ export class TaskCommentComponent implements OnInit, OnChanges, OnDestroy {
     isSaving: boolean;
 
     constructor(
-        private commentService: TaskCommentService
+        private commentService: TaskCommentService,
+        private accountService: AccountService
         ) {
     }
 
@@ -53,6 +55,8 @@ export class TaskCommentComponent implements OnInit, OnChanges, OnDestroy {
         }
         this.newComment.creationDate = new Date();
         this.newComment.parentTask = this.parentTask;
+        this.newComment.poster = new User();
+        this.newComment.poster.userName = this.accountService.getUserName();
         this.subscribeToSaveResponse(
             this.commentService.create(this.newComment)
             );

@@ -4,7 +4,8 @@ import { Observable } from 'rxjs/Rx';
 
 import { Task } from './task.model';
 import { TaskService } from './task.service';
-import { UserService } from '../user/user.service';
+import { AccountService } from '../../shared/user/account.service';
+import { User } from '../user/user.model';
 
 import { Project } from '../project/project.model';
 
@@ -20,7 +21,7 @@ export class TaskComponent {
 
     constructor(
         private taskService: TaskService,
-        private userService: UserService
+        private accountService: AccountService
         )
     {
     }
@@ -37,12 +38,12 @@ export class TaskComponent {
     }
 
     add() {
-        this.userService.find(1).subscribe(result => {
-            this.newTask.reporter = result;
-            this.newTask.assignee = result;
-        }, error => console.error(error));
         this.newTask.creationDate = new Date();
         this.newTask.parentProject = this.parentProject;
+        this.newTask.reporter = new User();
+        this.newTask.reporter.userName = this.accountService.getUserName();
+        this.newTask.assignee = new User();
+        this.newTask.assignee.userName = this.accountService.getUserName();
         
         this.subscribeToCreateResponse(
             this.taskService.create(this.newTask)

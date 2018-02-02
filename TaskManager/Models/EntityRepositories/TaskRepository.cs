@@ -45,6 +45,8 @@ namespace TaskManager.Models.EntityRepositories
         {
             _dbContext.Set<Entities.Task>().Add(entity);
             _dbContext.Entry(entity.ParentProject).State = EntityState.Unchanged;
+            _dbContext.Entry(entity.Assignee).State = EntityState.Unchanged;
+            _dbContext.Entry(entity.Reporter).State = EntityState.Unchanged;
             _dbContext.SaveChanges();
         }
 

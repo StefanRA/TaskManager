@@ -5,17 +5,22 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TaskManager.Models.EntityRepositories;
 using TaskManager.Models.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace TaskManager.Controllers.RESTControllers
 {
     [Route("api/[controller]")]
     public class ProjectsController : Controller
     {
+        private readonly UserManager<User> _userManager;
         private IProjectRepository _projectRepository;
 
-        public ProjectsController(IProjectRepository projectRepository)
+        public ProjectsController(
+            IProjectRepository projectRepository,
+            UserManager<User> userManager)
         {
             _projectRepository = projectRepository;
+            _userManager = userManager;
         }
         
         [HttpGet]
@@ -31,12 +36,19 @@ namespace TaskManager.Controllers.RESTControllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]Project project)
+        public async Task<IActionResult> Post([FromBody]Project project)
         {
             if (project == null)
             {
                 return BadRequest();
             }
+
+            if (project.Owner != null)
+            {
+                var user = await _userManager.FindByNameAsync(project.Owner.UserName);
+                project.Owner = user;
+            }
+
             _projectRepository.Add(project);
             return new ObjectResult(project);
         }

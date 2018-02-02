@@ -53,7 +53,7 @@
                 <td>{{ project.id }}</td>
                 <td><a [routerLink]="['../project', project.id ]">{{project.name}}</a></td>
                 <td>{{ project.description }}</td>
-                <td *ngIf="project.owner">{{ project.owner.id }}</td>
+                <td *ngIf="project.owner">{{ project.owner.userName }}</td>
                 <td *ngIf="!project.owner">-</td>
                 <td><button (click)="remove(project)">Delete</button></td>
             </tr>

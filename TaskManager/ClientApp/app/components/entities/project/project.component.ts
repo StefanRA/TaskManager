@@ -4,7 +4,8 @@ import { Observable } from 'rxjs/Rx';
 
 import { Project } from './project.model';
 import { ProjectService } from './project.service';
-import { UserService } from '../user/user.service';
+import { AccountService } from '../../shared/user/account.service';
+import { User } from '../user/user.model';
 
 @Component({
     selector: 'project',
@@ -17,7 +18,7 @@ export class ProjectComponent {
 
     constructor(
         private projectService: ProjectService,
-        private userService: UserService
+        private accountService: AccountService
         )
     {
     }
@@ -37,9 +38,8 @@ export class ProjectComponent {
         if (!this.newProject.name || this.newProject.name.length == 0) {
             return;
         }
-        this.userService.find(1).subscribe(result => {
-            this.newProject.owner = result;
-        }, error => console.error(error));
+        this.newProject.owner = new User();
+        this.newProject.owner.userName = this.accountService.getUserName();
         
         this.subscribeToCreateResponse(
             this.projectService.create(this.newProject)

@@ -71,4 +71,8 @@ export class AccountService {
     isLoggedIn() {
         return this.loggedIn;
     }
+
+    getUserName(): string {
+        return this.userName;
+    }
 }
