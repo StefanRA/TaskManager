@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Credentials } from './login.model';
-import { LoginService } from './login.service';
+import { AccountService } from '../../shared/user/account.service';
 
 @Component({
     selector: 'login',
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     submitted: boolean = false;
     credentials: Credentials = { userName: '', password: '' };
 
-    constructor(private loginService: LoginService, private router: Router, private activatedRoute: ActivatedRoute) { }
+    constructor(private userService: AccountService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
     ngOnInit() {
 
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.isRequesting = true;
         this.errors = '';
         if (valid) {
-            this.loginService.login(value.userName, value.password)
+            this.userService.login(value.userName, value.password)
                 .finally(() => this.isRequesting = false)
                 .subscribe(
                 result => {

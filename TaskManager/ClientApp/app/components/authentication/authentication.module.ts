@@ -1,6 +1,6 @@
 ﻿import { NgModule } from '@angular/core';
 
-import { SharedLibrariesModule } from '../shared/shared-libraries.module';
+import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 
 import { RegisterComponent } from './register/register.component';
@@ -10,7 +10,7 @@ import { LoginService } from './login/login.service';
 
 @NgModule({
     imports: [
-        SharedLibrariesModule,
+        SharedModule,
         RouterModule.forRoot([
             { path: 'register', component: RegisterComponent },
             { path: 'login', component: LoginComponent }

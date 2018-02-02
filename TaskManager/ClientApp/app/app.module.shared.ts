@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { SharedModule } from './components/shared/shared.module';
 import { RouterModule } from '@angular/router';
 
 import { EntityModule } from './components/entities/entity.module';
@@ -13,9 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
     imports: [
-        CommonModule,
-        HttpModule,
-        FormsModule,
+        SharedModule,
         EntityModule,
         AuthenticationModule,
         RouterModule.forRoot([
