@@ -39,6 +39,7 @@
     <None Remove="ClientApp\app\components\entities\user\user.module.ts" />
     <None Remove="ClientApp\app\components\entities\user\user.route.ts" />
     <None Remove="ClientApp\app\components\entities\user\user.service.ts" />
+    <None Remove="ClientApp\app\components\shared\auth\auth-guard.service.ts" />
     <None Remove="ClientApp\app\components\shared\shared.module.ts" />
     <None Remove="ClientApp\app\components\shared\user\account.model.ts" />
     <None Remove="ClientApp\app\components\shared\user\account.service.ts" />
@@ -75,6 +76,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.route.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\shared\auth\auth-guard.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\shared-libraries.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\shared.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\user\account.model.ts" />

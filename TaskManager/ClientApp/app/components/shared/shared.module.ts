@@ -2,6 +2,7 @@
 import { SharedLibrariesModule } from './shared-libraries.module';
 
 import { AccountService } from './user/account.service';
+import { AuthGuardService } from './auth/auth-guard.service';
 
 @NgModule({
     imports: [
@@ -12,6 +13,7 @@ import { AccountService } from './user/account.service';
     ],
     providers: [
         AccountService,
+        AuthGuardService,
         { provide: 'SERVER_URL', useFactory: getBaseUrl }
     ]
 

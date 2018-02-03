@@ -42,7 +42,7 @@ namespace TaskManager.Controllers.RESTControllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]Models.Entities.Task task)
+        public async Task<IActionResult> Create([FromBody]Models.Entities.Task task)
         {
             if (task == null)
             {
@@ -73,13 +73,16 @@ namespace TaskManager.Controllers.RESTControllers
                 return BadRequest();
             }
 
-            var existingTask = _taskRepository.Find(task => task.Id == item.Id);
+            var existingTask = _taskRepository.Get(item.Id);
             if (existingTask == null)
             {
                 return NotFound();
             }
 
-            _taskRepository.Update(item);
+            existingTask.Name = item.Name;
+            existingTask.Description = item.Description;
+
+            _taskRepository.Update(existingTask);
             return new NoContentResult();
         }
 
