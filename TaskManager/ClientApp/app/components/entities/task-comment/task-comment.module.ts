@@ -1,14 +1,14 @@
 ﻿import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { SharedLibrariesModule } from '../../shared/shared-libraries.module';
+import { SharedModule } from '../../shared/shared.module';
 
 import { TaskCommentComponent } from './task-comment.component';
 import { TaskCommentService } from './task-comment.service';
 
 @NgModule({
     imports: [
-        SharedLibrariesModule
+        SharedModule
     ],
     declarations: [
         TaskCommentComponent

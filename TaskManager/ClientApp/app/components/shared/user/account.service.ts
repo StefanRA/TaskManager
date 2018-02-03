@@ -26,6 +26,13 @@ export class AccountService {
         this._authNavStatusSource.next(this.loggedIn);
         this._userNameObservableSource.next(this.userName);
         this.authorities = [];
+
+        if (typeof window !== 'undefined') {
+            var authorities = localStorage.getItem('authorities');
+            if (authorities) {
+                this.authorities = JSON.parse(authorities);
+            }
+        }
     }
 
     register(userName: string, email: string, password: string, firstName: string, lastName: string): Observable<Response> {
@@ -51,6 +58,7 @@ export class AccountService {
                     let decodedJwtJsonData = window.atob(jwtData);
                     let decodedJwtData = JSON.parse(decodedJwtJsonData);
                     localStorage.setItem('user_name', decodedJwtData.sub);
+                    localStorage.setItem('authorities', JSON.stringify(decodedJwtData.authorities));
 
                     this.userName = decodedJwtData.sub;
                     this.loggedIn = true;

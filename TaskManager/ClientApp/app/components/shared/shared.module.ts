@@ -4,6 +4,7 @@ import { SharedLibrariesModule } from './shared-libraries.module';
 
 import { AccountService } from './user/account.service';
 import { AuthGuardService } from './auth/auth-guard.service';
+import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 @NgModule({
@@ -15,11 +16,13 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
         }])
     ],
     declarations: [
-        AccessDeniedComponent
+        AccessDeniedComponent,
+        HasAnyAuthorityDirective
     ],
     exports: [
         SharedLibrariesModule,
-        AccessDeniedComponent
+        AccessDeniedComponent,
+        HasAnyAuthorityDirective
     ],
     providers: [
         AccountService,
