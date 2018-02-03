@@ -19,5 +19,7 @@ import { AccountService } from './user/account.service';
 export class SharedModule { }
 
 export function getBaseUrl() {
-    return document.getElementsByTagName('base')[0].href;
+    if (typeof window !== 'undefined') {
+        return document.getElementsByTagName('base')[0].href;
+    }
 }

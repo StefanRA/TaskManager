@@ -43,6 +43,7 @@ namespace TaskManager.Models.EntityRepositories
 
         public override void Add(Entities.Task entity)
         {
+            entity.ParentProject.Owner = null;
             _dbContext.Set<Entities.Task>().Add(entity);
             _dbContext.Entry(entity.ParentProject).State = EntityState.Unchanged;
             _dbContext.Entry(entity.Assignee).State = EntityState.Unchanged;
