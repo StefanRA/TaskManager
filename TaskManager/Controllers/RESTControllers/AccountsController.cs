@@ -81,6 +81,23 @@ namespace TaskManager.Controllers.RESTControllers
                 new Claim(ClaimTypes.NameIdentifier, user.Id)
             };
 
+            var roleNames = await _userManager.GetRolesAsync(user);
+            foreach (var roleName in roleNames)
+            {
+                // Find IdentityRole by name
+                var role = await _roleManager.FindByNameAsync(roleName);
+                if (role != null)
+                {
+                    // Convert Identity to claim and add 
+                    var roleClaim = new Claim("authorities", role.Name, ClaimValueTypes.String);
+                    claims.Add(roleClaim);
+
+                    // Add claims belonging to the role
+                    var roleClaims = await _roleManager.GetClaimsAsync(role);
+                    claims.AddRange(roleClaims);
+                }
+            }
+
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtKey"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var expires = DateTime.Now.AddDays(Convert.ToDouble(_configuration["JwtExpireDays"]));

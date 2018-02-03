@@ -22,7 +22,8 @@ namespace TaskManager.Models.DatabaseInitializer
             if (roleManager.Roles.Any()) { return; }
             var roles = new IdentityRole[] {
                 new IdentityRole{Name="Admin"},
-                new IdentityRole{Name="User"}
+                new IdentityRole{Name="User"},
+                new IdentityRole{Name="Guest"}
                 };
             foreach (IdentityRole role in roles)
             {
@@ -34,13 +35,14 @@ namespace TaskManager.Models.DatabaseInitializer
         {
             if (userManager.Users.Any()) { return; }
 
-            var user = new User
+            var admin = new User
             {
                 UserName = "admin",
                 Email = "admin@localhost"
             };
-            await userManager.CreateAsync(user, "Admin.1234");
-            await userManager.AddToRoleAsync(user, "Admin");
+            await userManager.CreateAsync(admin, "Admin.1234");
+            await userManager.AddToRoleAsync(admin, "User");
+            await userManager.AddToRoleAsync(admin, "Admin");
         }
     }
 }

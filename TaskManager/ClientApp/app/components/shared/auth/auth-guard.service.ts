@@ -29,6 +29,12 @@ export class AuthGuardService implements CanActivate {
         if (!authorities || authorities.length === 0) {
             return true;
         }
-        return true;
+
+        if (this.userService.hasAnyAuthority(authorities)) {
+            return true;
+        }
+
+        this.router.navigate(['/access-denied']);
+        return false;
     }
 }

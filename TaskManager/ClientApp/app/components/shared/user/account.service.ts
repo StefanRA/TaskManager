@@ -12,6 +12,7 @@ export class AccountService {
     private resourceUrl: string;
     private loggedIn = false;
     private userName = "";
+    private authorities: string[];
 
     constructor(private http: Http) {
         this.resourceUrl = 'api/users';
@@ -24,6 +25,7 @@ export class AccountService {
         }
         this._authNavStatusSource.next(this.loggedIn);
         this._userNameObservableSource.next(this.userName);
+        this.authorities = [];
     }
 
     register(userName: string, email: string, password: string, firstName: string, lastName: string): Observable<Response> {
@@ -52,6 +54,7 @@ export class AccountService {
 
                     this.userName = decodedJwtData.sub;
                     this.loggedIn = true;
+                    this.authorities = decodedJwtData.authorities;
                     this._userNameObservableSource.next(decodedJwtData.sub);
                     this._authNavStatusSource.next(true);
                 }
@@ -66,6 +69,7 @@ export class AccountService {
         this.userName = "";
         this._authNavStatusSource.next(false);
         this._userNameObservableSource.next("");
+        this.authorities = [];
     }
 
     isLoggedIn() {
@@ -74,5 +78,13 @@ export class AccountService {
 
     getUserName(): string {
         return this.userName;
+    }
+
+    hasAnyAuthority(authorities: string[]) {
+        for (let i = 0; i < authorities.length; i++) {
+            if (this.authorities.indexOf(authorities[i]) !== -1) {
+                return true;
+            }
+        }
     }
 }

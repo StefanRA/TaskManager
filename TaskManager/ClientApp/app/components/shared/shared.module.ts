@@ -1,15 +1,25 @@
 ﻿import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { SharedLibrariesModule } from './shared-libraries.module';
 
 import { AccountService } from './user/account.service';
 import { AuthGuardService } from './auth/auth-guard.service';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 @NgModule({
     imports: [
-        SharedLibrariesModule
+        SharedLibrariesModule,
+        RouterModule.forRoot([{
+            path: 'access-denied',
+            component: AccessDeniedComponent
+        }])
+    ],
+    declarations: [
+        AccessDeniedComponent
     ],
     exports: [
-        SharedLibrariesModule
+        SharedLibrariesModule,
+        AccessDeniedComponent
     ],
     providers: [
         AccountService,
