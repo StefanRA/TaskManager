@@ -45,7 +45,6 @@
         <table class='table' *ngIf="tasks.length > 0">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Task Name</th>
                     <th>Task Description</th>
                     <th>Reporter</th>
@@ -58,7 +57,7 @@
                     <td>{{ task.description }}</td>
                     <td *ngIf="task.reporter">{{ task.reporter.userName }}</td>
                     <td *ngIf="!task.reporter">-</td>
-                    <td><button (click)="remove(task)">Delete</button></td>
+                    <td><button class="btn btn-default" (click)="remove(task)">Delete</button></td>
                 </tr>
             </tbody>
         </table>
