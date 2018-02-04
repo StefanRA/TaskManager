@@ -41,7 +41,6 @@
     <table class='table' *ngIf="projects && projects.length > 0">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Project Name</th>
                 <th>Project Description</th>
                 <th>Owner</th>
@@ -50,7 +49,6 @@
         </thead>
         <tbody>
             <tr *ngFor="let project of projects">
-                <td>{{ project.id }}</td>
                 <td><a [routerLink]="['../project', project.id ]">{{project.name}}</a></td>
                 <td>{{ project.description }}</td>
                 <td *ngIf="project.owner">{{ project.owner.userName }}</td>

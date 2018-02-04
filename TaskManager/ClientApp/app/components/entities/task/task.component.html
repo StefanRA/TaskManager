@@ -54,7 +54,6 @@
             </thead>
             <tbody>
                 <tr *ngFor="let task of tasks">
-                    <td>{{ task.id }}</td>
                     <td><a [routerLink]="['/task', task.id ]">{{task.name}}</a></td>
                     <td>{{ task.description }}</td>
                     <td *ngIf="task.reporter">{{ task.reporter.userName }}</td>

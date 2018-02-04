@@ -21,4 +21,9 @@ export class DashboardService {
         let headers = this.apiService.createAuthorizationHeaders();
         return this.http.get(this.resourceUrl, { headers });
     }
+
+    updateUserProfile(userProfile: UserProfile): Observable<Response> {
+        let headers = this.apiService.createAuthorizationHeaders();
+        return this.http.put(this.resourceUrl, userProfile, { headers });
+    }
 }

@@ -6,7 +6,7 @@
             <a [routerLink]="['../../user', project.owner.id ]">{{ project.owner.userName }}</a>
         </div>
         <p *ngIf="!project.owner">No owner</p>
-        <button (click)="previousState()">Return to project list</button>
+        <button class="btn btn-default" (click)="previousState()">Return to project list</button>
     </div>
     <hr />
     <task [parentProject]="project"></task>

@@ -32,5 +32,30 @@ namespace TaskManager.Controllers.RESTControllers
             
             return await _userManager.FindByNameAsync(userName);
         }
+
+        [Authorize(Policy = "UserOnly")]
+        [HttpPut]
+        public async Task<IActionResult> UpdateUserProfile([FromBody] User userProfile)
+        {
+            if (userProfile == null)
+            {
+                return BadRequest();
+            }
+
+            var userName = _caller.Claims.Single(c => c.Type == JwtRegisteredClaimNames.Sub).Value;
+
+            User existingUser = _userManager.FindByNameAsync(userName).Result;
+            if (existingUser == null)
+            {
+                return NotFound();
+            }
+
+            existingUser.FirstName = userProfile.FirstName;
+            existingUser.LastName = userProfile.LastName;
+
+            await _userManager.UpdateAsync(existingUser);
+
+            return new NoContentResult();
+        }
     }
 }

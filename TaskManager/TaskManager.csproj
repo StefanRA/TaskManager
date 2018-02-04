@@ -59,6 +59,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\authentication\register\register.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\authentication\register\register.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\dashboard\dashboard.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboard\edit-profile\dashboard-edit-profile.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\dashboard\home\dashboard-home.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\dashboard\root\dashboard-root.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\dashboard\shared\models\user-profile.model.ts" />
