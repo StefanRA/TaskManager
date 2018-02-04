@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { EntityModule } from './components/entities/entity.module';
 import { AuthenticationModule } from './components/authentication/authentication.module';
+import { DashboardModule } from './components/dashboard/dashboard.module';
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
@@ -13,6 +14,7 @@ import { HomeComponent } from './components/home/home.component';
     imports: [
         SharedModule,
         EntityModule,
+        DashboardModule,
         AuthenticationModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
