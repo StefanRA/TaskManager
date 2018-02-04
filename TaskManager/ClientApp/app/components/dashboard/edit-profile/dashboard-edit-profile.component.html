@@ -14,16 +14,20 @@
                     <form name="editForm" role="form" #editForm="ngForm">
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="field_name">First name</label>
-                                <input type="text" class="form-control" id="field_name" placeholder="Enter your first name" name="name"
+                                <label for="field_firstName">First name</label>
+                                <input type="text" class="form-control" id="field_firstName" placeholder="Enter your first name" name="firstName"
                                        [(ngModel)]="userProfile.firstName" />
                             </div>
                             <div class="form-group">
-                                <label for="field_description">Description</label>
-                                <input type="text" class="form-control" id="field_description" placeholder="Enter the description of this project" name="description"
+                                <label for="field_lastName">Last name</label>
+                                <input type="text" class="form-control" id="field_lastName" placeholder="Enter your last name" name="lastName"
                                        [(ngModel)]="userProfile.lastName" />
                             </div>
-
+                            <div class="form-group">
+                                <label for="field_email">Email</label>
+                                <input type="text" class="form-control" id="field_email" placeholder="Enter your email address" name="email"
+                                       [(ngModel)]="userProfile.email" />
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" [disabled]="editForm.form.invalid" class="btn btn-primary" data-dismiss="modal" (click)="editProfile()">Edit</button>
@@ -35,17 +39,34 @@
             </div>
         </div>
 
-        <ul class="list-group">
-            <li class="list-group-item">
-                <span>First name: </span>
-                <span *ngIf="userProfile.firstName">{{ userProfile.firstName }}</span>
-                <span *ngIf="!userProfile.firstName">Not set</span>
-            </li>
-            <li class="list-group-item">
-                <span>Last name: </span>
-                <span *ngIf="userProfile.lastName">{{ userProfile.lastName }}</span>
-                <span *ngIf="!userProfile.lastName">Not set</span>
-            </li>
-        </ul>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>First name</th>
+                        <td>
+                            <span *ngIf="userProfile.firstName">{{ userProfile.firstName }}</span>
+                            <span *ngIf="!userProfile.firstName">Not set</span>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>                    
+                    <tr>
+                        <th>Last name</th>
+                        <td>
+                            <span *ngIf="userProfile.lastName">{{ userProfile.lastName }}</span>
+                            <span *ngIf="!userProfile.lastName">Not set</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>
+                            <span *ngIf="userProfile.email">{{ userProfile.email }}</span>
+                            <span *ngIf="!userProfile.email">Not set</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>  
