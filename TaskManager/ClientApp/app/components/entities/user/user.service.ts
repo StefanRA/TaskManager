@@ -17,9 +17,12 @@ export class UserService {
         this.resourceUrl = baseUrl + 'api/users'
     }
 
-    create(user: User): Observable<Response> {
+    create(user: User): Observable<User> {
         let headers = this.apiService.createAuthorizationHeaders();
-        return this.http.post(this.resourceUrl, user, { headers });
+        return this.http.post(this.resourceUrl, user, { headers }).map((res: Response) => {
+            const jsonResponse = res.json();
+            return this.convertItemFromServer(jsonResponse);
+        });
     }
 
     getAll(): Observable<Response> {

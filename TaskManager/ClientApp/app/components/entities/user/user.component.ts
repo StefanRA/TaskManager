@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
@@ -10,7 +10,7 @@ import { UserService } from './user.service';
     templateUrl: './user.component.html'
 })
 
-export class UserComponent {
+export class UserComponent implements OnInit {
     public users: User[];
     public newUser: User;
 
@@ -20,6 +20,10 @@ export class UserComponent {
         this.loadAll();
     }
 
+    ngOnInit() {
+        this.newUser = new User();
+    }
+
     loadAll() {
         this.userService.getAll().subscribe(result => {
             this.users = result.json() as User[];
@@ -27,16 +31,24 @@ export class UserComponent {
     }
 
     add() {
-        this.newUser = new User();
-        this.newUser.userName = 'stefan';
-        this.newUser.firstName = 'Stefan';
-        this.newUser.lastName = 'RA';
-        this.newUser.email = 'yep';
+        this.subscribeToCreateResponse(
+            this.userService.create(this.newUser)
+        );
+    }
 
-        const copy = this.convert(this.newUser);
-        //this.http.post(this.resourceUrl, copy).subscribe(result => { this.newUser = result.json() },error=>console.error(error));
-        this.userService.create(this.newUser).subscribe(result => { this.newUser = result.json() }, error => console.error(error));
-        this.users.push(this.newUser);
+    private subscribeToCreateResponse(result: Observable<User>) {
+        result.subscribe(
+            (result: User) => this.onCreateSuccess(result),
+            (result: Response) => this.onCreateError()
+        );
+    }
+
+    private onCreateSuccess(result: User) {
+        this.loadAll();
+        this.newUser = new User();
+    }
+
+    private onCreateError() {
     }
 
     private convert(user: User): User {

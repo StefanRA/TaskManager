@@ -34,14 +34,22 @@ namespace TaskManager.Controllers.RESTControllers
 
         [Authorize(Policy = "AdminOnly")]
         [HttpPost]
-        public IActionResult Post([FromBody]User user)
+        public async Task<IActionResult> Post([FromBody]User user)
         {
             if (user == null)
             {
                 return BadRequest();
             }
-            _userManager.CreateAsync(user);
-            return new ObjectResult(user);
+            
+            var result = await _userManager.CreateAsync(user, "User.1234");
+
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(user, "User");
+                return new ObjectResult(user);
+            }
+            
+            throw new Exception(result.ToString());
         }
 
         [Authorize(Policy = "AdminOnly")]
