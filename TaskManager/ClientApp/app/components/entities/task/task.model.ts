@@ -7,6 +7,7 @@ export class Task {
         public description?: string,
         public creationDate?: Date,
         public dueDate?: Date,
+        public status?: boolean,
         public reporter?: any,
         public assignee?: any,
         public parentProject?: Project

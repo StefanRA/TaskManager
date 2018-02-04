@@ -29,6 +29,8 @@ namespace TaskManager.Models.EntityRepositories
                 .Include(task => task.Reporter)
                 .Include(task => task.Assignee)
                 .Where(task => task.ParentProject.Id == parentProjectId)
+                .OrderBy(task => task.Status)
+                .ThenByDescending(task => task.CreationDate)
                 .ToList();
         }
 

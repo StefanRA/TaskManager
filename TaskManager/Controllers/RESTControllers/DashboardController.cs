@@ -52,6 +52,7 @@ namespace TaskManager.Controllers.RESTControllers
 
             existingUser.FirstName = userProfile.FirstName;
             existingUser.LastName = userProfile.LastName;
+            existingUser.Email = userProfile.Email;
 
             await _userManager.UpdateAsync(existingUser);
 

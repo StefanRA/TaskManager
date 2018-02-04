@@ -87,6 +87,7 @@ namespace TaskManager.Controllers.RESTControllers
 
             existingTask.Name = item.Name;
             existingTask.Description = item.Description;
+            existingTask.Status = item.Status;
 
             _taskRepository.Update(existingTask);
             return new NoContentResult();

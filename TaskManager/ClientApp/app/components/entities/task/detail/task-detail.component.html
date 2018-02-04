@@ -1,13 +1,17 @@
 ﻿<div *ngIf="task" class="container-fluid">    
     <div>
         <div class="row taskTitleContainer">
-            <textarea name="title" id="title" [(ngModel)]="task.name" rows="1" style="width: 100%;"></textarea>
+            <textarea name="title" id="title" [(ngModel)]="task.name" rows="1" style="width: 100%;" spellcheck="false"></textarea>
+            <button class="btn btn-default" (click)="update()">Update</button>
+            <button class="btn btn-default" (click)="toggleStatus()">
+                <span *ngIf="!task.status">Done</span>
+                <span *ngIf="task.status">In work</span>
+            </button>
         </div>
         <div class="row top-buffer">
             <div class='col-sm-8 taskDescriptionContainer'>
                 <p class="text-divider">Description</p>
-                <textarea name="comment" id="field_comment" [(ngModel)]="task.description" style="width: 100%;"></textarea>
-                <button (click)="update()">Update</button>
+                <textarea name="comment" id="field_comment" [(ngModel)]="task.description" style="width: 100%;" spellcheck="false"></textarea>
             </div>
             <div class='col-sm-4 taskDetailSidebar'>
                 <p class="text-divider">General information</p>
@@ -17,6 +21,11 @@
                         <a [routerLink]="['/project', task.parentProject.id ]">{{ task.parentProject.name }}</a>
                     </span>
                     <span *ngIf="!task.parentProject">None</span>
+                </p>
+                <p>
+                    <b>Status: </b>
+                    <span *ngIf="task.status == true" class="label label-success">Done</span>
+                    <span *ngIf="task.status == false" class="label label-info">In work</span>
                 </p>
                 <p class="text-divider">Important dates</p>
                 <p><b>Creation date: </b> {{task.creationDate | date:'medium'}}</p>

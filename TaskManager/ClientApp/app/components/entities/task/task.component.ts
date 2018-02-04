@@ -38,6 +38,7 @@ export class TaskComponent {
     }
 
     add() {
+        this.newTask.status = false;
         this.newTask.creationDate = new Date();
         this.newTask.parentProject = this.parentProject;
         this.newTask.reporter = new User();
@@ -68,7 +69,7 @@ export class TaskComponent {
     }
 
     private onCreateSuccess(result: Task) {
-        this.tasks.push(result);
+        this.loadAll();
         this.newTask = new Task();
     }
 

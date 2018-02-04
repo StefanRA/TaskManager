@@ -12,6 +12,7 @@ namespace TaskManager.Models.Entities
         public string Description { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime DueDate { get; set; }
+        public Boolean Status { get; set; }
         public User Reporter { get; set; }
         public User Assignee { get; set; }
         public Project ParentProject { get; set; }
