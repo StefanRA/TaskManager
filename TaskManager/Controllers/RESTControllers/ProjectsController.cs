@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using TaskManager.Models.EntityRepositories;
 using TaskManager.Models.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TaskManager.Controllers.RESTControllers
 {
@@ -22,21 +23,24 @@ namespace TaskManager.Controllers.RESTControllers
             _projectRepository = projectRepository;
             _userManager = userManager;
         }
-        
+
+        [Authorize(Policy = "UserOnly")]
         [HttpGet]
         public IEnumerable<Project> GetAll()
         {
             return _projectRepository.GetAllWithRelatedDataIncluded();
         }
-        
+
+        [Authorize(Policy = "UserOnly")]
         [HttpGet("{id}")]
         public Project Get(int id)
         {
             return _projectRepository.GetWithRelatedDataIncluded(id);
         }
 
+        [Authorize(Policy = "UserOnly")]
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]Project project)
+        public async Task<IActionResult> Create([FromBody]Project project)
         {
             if (project == null)
             {
@@ -52,12 +56,14 @@ namespace TaskManager.Controllers.RESTControllers
             _projectRepository.Add(project);
             return new ObjectResult(project);
         }
-        
+
+        [Authorize(Policy = "UserOnly")]
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Update(int id, [FromBody]string value)
         {
         }
-        
+
+        [Authorize(Policy = "UserOnly")]
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

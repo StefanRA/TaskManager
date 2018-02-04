@@ -9,6 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Newtonsoft.Json;
 
 using TaskManager.Models.Entities;
 using TaskManager.Models.DataTransferObjects;
@@ -37,14 +38,20 @@ namespace TaskManager.Controllers.RESTControllers
         }
 
         [HttpPost]
-        public async Task<object> Login([FromBody] LoginDTO model)
+        public async Task<string> Login([FromBody] LoginDTO model)
         {
             var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, false, false);
 
             if (result.Succeeded)
             {
                 var appUser = _userManager.Users.SingleOrDefault(r => r.UserName == model.UserName);
-                return await GenerateJwtToken(model.UserName, appUser);
+
+                var response = new
+                {
+                    auth_token = await GenerateJwtToken(model.UserName, appUser)
+                };
+
+                return JsonConvert.SerializeObject(response);
             }
 
             throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
@@ -72,7 +79,7 @@ namespace TaskManager.Controllers.RESTControllers
             throw new Exception(result.ToString());
         }
 
-        private async Task<object> GenerateJwtToken(string userName, User user)
+        private async Task<string> GenerateJwtToken(string userName, User user)
         {
             var claims = new List<Claim>
             {

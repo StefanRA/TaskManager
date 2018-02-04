@@ -48,10 +48,11 @@ export class AccountService {
         headers.append('Content-Type', 'application/json');
 
         return this.http.post("api/accounts/login", JSON.stringify({ userName, password }), { headers })
-            .map(user => {
-                if (user) {
+            .map(res => {
+                if (res) {
+                    var user = res.json().auth_token;
                     if (typeof window !== 'undefined') {
-                        localStorage.setItem('auth_token', JSON.stringify(user));
+                        localStorage.setItem('auth_token', user);
                     }
                     let jwt = JSON.stringify(user);
                     let jwtData = jwt.split('.')[1];

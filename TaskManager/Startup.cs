@@ -56,7 +56,7 @@ namespace TaskManager
                 {
                     cfg.RequireHttpsMetadata = false;
                     cfg.SaveToken = true;
-                    cfg.TokenValidationParameters = new TokenValidationParameters
+                     cfg.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidIssuer = Configuration["JwtIssuer"],
                         ValidAudience = Configuration["JwtIssuer"],
@@ -64,6 +64,12 @@ namespace TaskManager
                         ClockSkew = TimeSpan.Zero // remove delay of token when expire
                     };
                 });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("UserOnly", policy => policy.RequireClaim("authorities", "User"));
+                options.AddPolicy("AdminOnly", policy => policy.RequireClaim("authorities", "Admin"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,6 +88,7 @@ namespace TaskManager
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseAuthentication();
             app.UseStaticFiles();
 
             app.UseMvc(routes =>

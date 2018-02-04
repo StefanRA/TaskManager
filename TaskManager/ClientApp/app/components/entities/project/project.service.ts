@@ -1,5 +1,5 @@
 ﻿import { Injectable, Inject } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import { Project } from './project.model';
@@ -13,23 +13,43 @@ export class ProjectService {
     }
 
     create(taskComment: Project): Observable<Project> {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        let authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', `Bearer ${authToken}`);
+
         const copy = this.convert(taskComment);
-        return this.http.post(this.resourceUrl, copy).map((res: Response) => {
+        return this.http.post(this.resourceUrl, copy, { headers }).map((res: Response) => {
             const jsonResponse = res.json();
             return this.convertItemFromServer(jsonResponse);
         });
     }
 
     getAll(): Observable<Response> {
-        return this.http.get(this.resourceUrl);
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        let authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', `Bearer ${authToken}`);
+
+        return this.http.get(this.resourceUrl, { headers });
     }
 
     find(id: number): Observable<Response> {
-        return this.http.get(`${this.resourceUrl}/${id}`);
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        let authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', `Bearer ${authToken}`);
+
+        return this.http.get(`${this.resourceUrl}/${id}`, { headers });
     }
 
     delete(id?: number): Observable<Response> {
-        return this.http.delete(`${this.resourceUrl}/${id}`);
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        let authToken = localStorage.getItem('auth_token');
+        headers.append('Authorization', `Bearer ${authToken}`);
+
+        return this.http.delete(`${this.resourceUrl}/${id}`, { headers });
     }
     
     private convertItemFromServer(json: any): Project {
