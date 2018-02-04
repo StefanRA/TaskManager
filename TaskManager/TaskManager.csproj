@@ -40,6 +40,7 @@
     <None Remove="ClientApp\app\components\entities\user\user.route.ts" />
     <None Remove="ClientApp\app\components\entities\user\user.service.ts" />
     <None Remove="ClientApp\app\components\shared\access-denied\access-denied.component.ts" />
+    <None Remove="ClientApp\app\components\shared\auth\api-communication.service.ts" />
     <None Remove="ClientApp\app\components\shared\auth\auth-guard.service.ts" />
     <None Remove="ClientApp\app\components\shared\auth\has-any-authority.directive.ts" />
     <None Remove="ClientApp\app\components\shared\shared.module.ts" />
@@ -79,6 +80,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.route.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\entities\user\user.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\access-denied\access-denied.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\shared\auth\api-communication.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\auth\auth-guard.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\auth\has-any-authority.directive.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\shared-libraries.module.ts" />

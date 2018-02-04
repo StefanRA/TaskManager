@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using TaskManager.Models.Entities;
 using TaskManager.Models.EntityRepositories;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TaskManager.Controllers.RESTControllers
 {
@@ -22,25 +23,29 @@ namespace TaskManager.Controllers.RESTControllers
             _taskRepository = taskRepository;
             _userManager = userManager;
         }
-        
+
+        [Authorize(Policy = "UserOnly")]
         [HttpGet]
         public IEnumerable<Models.Entities.Task> GetAll()
         {
             return _taskRepository.GetAllWithRelatedDataIncluded();
         }
 
+        [Authorize(Policy = "UserOnly")]
         [HttpGet("byProject/{projectId}")]
         public IEnumerable<Models.Entities.Task> GetAllByProjectId(int projectId)
         {
             return _taskRepository.GetAllByProjectId(projectId);
         }
 
+        [Authorize(Policy = "UserOnly")]
         [HttpGet("{id}")]
         public Models.Entities.Task Get(int id)
         {
             return _taskRepository.GetWithRelatedDataIncluded(id);
         }
 
+        [Authorize(Policy = "UserOnly")]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]Models.Entities.Task task)
         {
@@ -65,6 +70,7 @@ namespace TaskManager.Controllers.RESTControllers
             return new ObjectResult(task);
         }
 
+        [Authorize(Policy = "UserOnly")]
         [HttpPut("{id}")]
         public IActionResult Update(long id, [FromBody] Models.Entities.Task item)
         {
@@ -86,6 +92,7 @@ namespace TaskManager.Controllers.RESTControllers
             return new NoContentResult();
         }
 
+        [Authorize(Policy = "UserOnly")]
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

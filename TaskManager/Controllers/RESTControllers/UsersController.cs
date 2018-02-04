@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using TaskManager.Models.EntityRepositories;
 using TaskManager.Models.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TaskManager.Controllers.RESTControllers
 {
@@ -30,7 +31,8 @@ namespace TaskManager.Controllers.RESTControllers
         {
             return await _userManager.FindByIdAsync(id);
         }
-        
+
+        [Authorize(Policy = "AdminOnly")]
         [HttpPost]
         public IActionResult Post([FromBody]User user)
         {
@@ -41,12 +43,14 @@ namespace TaskManager.Controllers.RESTControllers
             _userManager.CreateAsync(user);
             return new ObjectResult(user);
         }
-        
+
+        [Authorize(Policy = "AdminOnly")]
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
-        
+
+        [Authorize(Policy = "AdminOnly")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {

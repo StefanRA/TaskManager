@@ -1,7 +1,7 @@
 ﻿import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { SharedLibrariesModule } from '../../shared/shared-libraries.module';
+import { SharedModule } from '../../shared/shared.module';
 
 import { ProjectComponent } from './project.component';
 import { ProjectDetailComponent } from './detail/project-detail.component';
@@ -15,7 +15,7 @@ const ENTITY_STATES = [
 
 @NgModule({
     imports: [
-        SharedLibrariesModule,
+        SharedModule,
         TaskModule,
         RouterModule.forRoot(ENTITY_STATES)
     ],

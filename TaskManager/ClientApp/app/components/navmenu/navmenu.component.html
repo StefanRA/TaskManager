@@ -11,25 +11,15 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
                 <li><a [routerLink]="['/home']">Home</a></li>
-                <li class="dropdown" *ngIf="isLoggedIn">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Entities <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li class="dropdown-header">Entities</li>
-                        <li *hasAnyAuthority="'Admin'">
-                            <a [routerLink]="['/user']">Users</a>
-                        </li>
-                        <li>
-                            <a [routerLink]="['/project']">Projects</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
+                <li *ngIf="isLoggedIn">
+                    <a [routerLink]="['/project']">Projects</a>
                 </li>
             </ul>
             
             <ul class="nav navbar-nav navbar-right" *ngIf="isLoggedIn">
+                <li *hasAnyAuthority="'Admin'">
+                    <a [routerLink]="['/user']">AdminCP</a>
+                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">

@@ -74,8 +74,10 @@ export class AccountService {
     logout() {
         localStorage.removeItem('auth_token');
         localStorage.removeItem('user_name');
+        localStorage.removeItem('authorities');
         this.loggedIn = false;
         this.userName = "";
+        this.authorities = [];
         this._authNavStatusSource.next(false);
         this._userNameObservableSource.next("");
         this.authorities = [];

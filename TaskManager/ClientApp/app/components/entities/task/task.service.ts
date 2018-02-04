@@ -3,41 +3,51 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import { Task } from './task.model';
+import { ApiCommunicationService } from '../../shared/auth/api-communication.service';
 
 @Injectable()
 export class TaskService {
     private resourceUrl: string;
 
-    constructor(private http: Http, @Inject('SERVER_URL') baseUrl: string) {
+    constructor(
+        private http: Http,
+        @Inject('SERVER_URL') baseUrl: string,
+        private apiService: ApiCommunicationService
+    ) {
         this.resourceUrl = baseUrl + 'api/tasks'
     }
 
-    create(taskComment: Task): Observable<Task> {
-        const copy = this.convert(taskComment);
-        return this.http.post(this.resourceUrl, copy).map((res: Response) => {
+    create(task: Task): Observable<Task> {
+        let headers = this.apiService.createAuthorizationHeaders();
+        return this.http.post(this.resourceUrl, task, { headers }).map((res: Response) => {
             const jsonResponse = res.json();
             return this.convertItemFromServer(jsonResponse);
         });
     }
 
     getAll(): Observable<Response> {
-        return this.http.get(this.resourceUrl);
+        let headers = this.apiService.createAuthorizationHeaders();
+        return this.http.get(this.resourceUrl, { headers });
     }
 
     getAllByProjectId(projectId: any): Observable<Response> {
-        return this.http.get(`${this.resourceUrl}/byProject/${projectId}`);
+        let headers = this.apiService.createAuthorizationHeaders();
+        return this.http.get(`${this.resourceUrl}/byProject/${projectId}`, { headers });
     }
 
     find(id: number): Observable<Response> {
-        return this.http.get(`${this.resourceUrl}/${id}`);
+        let headers = this.apiService.createAuthorizationHeaders();
+        return this.http.get(`${this.resourceUrl}/${id}`, { headers });
     }
 
     delete(id?: number): Observable<Response> {
-        return this.http.delete(`${this.resourceUrl}/${id}`);
+        let headers = this.apiService.createAuthorizationHeaders();
+        return this.http.delete(`${this.resourceUrl}/${id}`, { headers });
     }
 
     update(task: Task): Observable<Task> {
-        return this.http.put(`${this.resourceUrl}/${task.id}`, task).map((res: Response) => {
+        let headers = this.apiService.createAuthorizationHeaders();
+        return this.http.put(`${this.resourceUrl}/${task.id}`, task, { headers }).map((res: Response) => {
             return res.json();
         });
     }
@@ -45,10 +55,5 @@ export class TaskService {
     private convertItemFromServer(json: any): Task {
         const entity: Task = Object.assign(new Task(), json);
         return entity;
-    }
-    
-    private convert(user: Task): Task {
-        const copy: Task = Object.assign({}, user);
-        return copy;
     }
 }

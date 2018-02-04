@@ -4,6 +4,7 @@ import { SharedLibrariesModule } from './shared-libraries.module';
 
 import { AccountService } from './user/account.service';
 import { AuthGuardService } from './auth/auth-guard.service';
+import { ApiCommunicationService } from './auth/api-communication.service';
 import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
@@ -27,6 +28,7 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
     providers: [
         AccountService,
         AuthGuardService,
+        ApiCommunicationService,
         { provide: 'SERVER_URL', useFactory: getBaseUrl }
     ]
 

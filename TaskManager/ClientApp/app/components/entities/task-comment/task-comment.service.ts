@@ -3,41 +3,51 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 import { TaskComment } from './task-comment.model';
+import { ApiCommunicationService } from '../../shared/auth/api-communication.service';
 
 @Injectable()
 export class TaskCommentService {
     private resourceUrl: string;
 
-    constructor(private http: Http, @Inject('SERVER_URL') baseUrl: string) {
+    constructor(
+        private http: Http,
+        @Inject('SERVER_URL') baseUrl: string,
+        private apiService: ApiCommunicationService
+    ) {
         this.resourceUrl = baseUrl + 'api/taskComments'
     }
 
     create(taskComment: TaskComment): Observable<TaskComment> {
-        const copy = this.convert(taskComment);
-        return this.http.post(this.resourceUrl, copy).map((res: Response) => {
+        let headers = this.apiService.createAuthorizationHeaders();
+        return this.http.post(this.resourceUrl, taskComment, { headers }).map((res: Response) => {
             const jsonResponse = res.json();
             return this.convertItemFromServer(jsonResponse);
         });
     }
 
     getAll(): Observable<Response> {
-        return this.http.get(this.resourceUrl);
+        let headers = this.apiService.createAuthorizationHeaders();
+        return this.http.get(this.resourceUrl, { headers });
     }
 
     getAllByTaskId(taskId: any): Observable<Response> {
-        return this.http.get(`${this.resourceUrl}/byTask/${taskId}`);
+        let headers = this.apiService.createAuthorizationHeaders();
+        return this.http.get(`${this.resourceUrl}/byTask/${taskId}`, { headers });
     }
 
     find(id: number): Observable<Response> {
-        return this.http.get(`${this.resourceUrl}/${id}`);
+        let headers = this.apiService.createAuthorizationHeaders();
+        return this.http.get(`${this.resourceUrl}/${id}`, { headers });
     }
 
     delete(id?: number): Observable<Response> {
-        return this.http.delete(`${this.resourceUrl}/${id}`);
+        let headers = this.apiService.createAuthorizationHeaders();
+        return this.http.delete(`${this.resourceUrl}/${id}`, { headers });
     }
 
     update(taskComment: TaskComment): Observable<TaskComment> {
-        return this.http.put(`${this.resourceUrl}/${taskComment.id}`, taskComment).map((res: Response) => {
+        let headers = this.apiService.createAuthorizationHeaders();
+        return this.http.put(`${this.resourceUrl}/${taskComment.id}`, taskComment, { headers }).map((res: Response) => {
             return res.json();
         });
     }
@@ -45,10 +55,5 @@ export class TaskCommentService {
     private convertItemFromServer(json: any): TaskComment {
         const entity: TaskComment = Object.assign(new TaskComment(), json);
         return entity;
-    }
-    
-    private convert(user: TaskComment): TaskComment {
-        const copy: TaskComment = Object.assign({}, user);
-        return copy;
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using TaskManager.Models.Entities;
 using TaskManager.Models.EntityRepositories;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TaskManager.Controllers.RESTControllers
 {
@@ -14,7 +15,7 @@ namespace TaskManager.Controllers.RESTControllers
     {
         private readonly UserManager<User> _userManager;
         private ITaskCommentRepository _taskCommentRepository;
-
+        
         public TaskCommentsController(
             ITaskCommentRepository taskCommentRepository,
             UserManager<User> userManager)
@@ -23,24 +24,28 @@ namespace TaskManager.Controllers.RESTControllers
             _userManager = userManager;
         }
 
+        [Authorize(Policy = "UserOnly")]
         [HttpGet]
         public IEnumerable<Models.Entities.TaskComment> GetAll()
         {
             return _taskCommentRepository.GetAll();
         }
 
+        [Authorize(Policy = "UserOnly")]
         [HttpGet("byTask/{taskId}")]
         public IEnumerable<Models.Entities.TaskComment> GetAllByTaskId(int taskId)
         {
             return _taskCommentRepository.GetAllByTaskId(taskId);
         }
 
+        [Authorize(Policy = "UserOnly")]
         [HttpGet("{id}")]
         public Models.Entities.TaskComment Get(int id)
         {
             return _taskCommentRepository.Get(id);
         }
 
+        [Authorize(Policy = "UserOnly")]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]Models.Entities.TaskComment taskComment)
         {
@@ -59,6 +64,7 @@ namespace TaskManager.Controllers.RESTControllers
             return new ObjectResult(taskComment);
         }
 
+        [Authorize(Policy = "UserOnly")]
         [HttpPut("{id}")]
         public IActionResult Update(long id, [FromBody] Models.Entities.TaskComment item)
         {
@@ -77,6 +83,7 @@ namespace TaskManager.Controllers.RESTControllers
             return new NoContentResult();
         }
 
+        [Authorize(Policy = "UserOnly")]
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
