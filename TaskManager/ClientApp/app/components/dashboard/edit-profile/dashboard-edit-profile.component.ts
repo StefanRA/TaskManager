@@ -17,7 +17,6 @@ export class DashboardEditProfileComponent implements OnInit {
             .subscribe((response) => {
                 this.userProfile = response.json();
             });
-
     }
 
     editProfile() {

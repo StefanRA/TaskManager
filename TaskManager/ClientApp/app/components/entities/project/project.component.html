@@ -45,7 +45,7 @@
                     <th>Project Name</th>
                     <th>Project Description</th>
                     <th>Owner</th>
-                    <th>Operations</th>
+                    <th *hasAnyAuthority="'Admin'">Operations</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,7 +54,7 @@
                     <td>{{ project.description }}</td>
                     <td *ngIf="project.owner">{{ project.owner.userName }}</td>
                     <td *ngIf="!project.owner">-</td>
-                    <td><button class="btn btn-default" (click)="remove(project)">Delete</button></td>
+                    <td *hasAnyAuthority="'Admin'"><button class="btn btn-default" (click)="remove(project)">Delete</button></td>
                 </tr>
             </tbody>
         </table>

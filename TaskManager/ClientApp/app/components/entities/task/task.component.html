@@ -49,7 +49,7 @@
                     <th>Task Description</th>
                     <th>Reporter</th>
                     <th>Status</th>
-                    <th>Operations</th>
+                    <th *hasAnyAuthority="'Admin'">Operations</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,7 +62,7 @@
                         <span *ngIf="task.status == true" class="label label-success">Done</span>
                         <span *ngIf="task.status == false" class="label label-info">In work</span>
                     </td>
-                    <td><button class="btn btn-default" (click)="remove(task)">Delete</button></td>
+                    <td *hasAnyAuthority="'Admin'"><button class="btn btn-default" (click)="remove(task)">Delete</button></td>
                 </tr>
             </tbody>
         </table>

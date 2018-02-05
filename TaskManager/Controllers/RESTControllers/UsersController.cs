@@ -34,7 +34,7 @@ namespace TaskManager.Controllers.RESTControllers
 
         [Authorize(Policy = "AdminOnly")]
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]User user)
+        public async Task<IActionResult> Create([FromBody]User user)
         {
             if (user == null)
             {
@@ -50,12 +50,6 @@ namespace TaskManager.Controllers.RESTControllers
             }
             
             throw new Exception(result.ToString());
-        }
-
-        [Authorize(Policy = "AdminOnly")]
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
         }
 
         [Authorize(Policy = "AdminOnly")]

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using TaskManager.Models.Entities;
 using System.IdentityModel.Tokens.Jwt;
+using TaskManager.Models.DataTransferObjects;
 
 namespace TaskManager.Controllers.RESTControllers
 {
@@ -26,16 +27,26 @@ namespace TaskManager.Controllers.RESTControllers
 
         [Authorize(Policy = "UserOnly")]
         [HttpGet]
-        public async Task<User> Home()
+        public async Task<UserProfileDTO> GetCurrentUserProfile()
         {            
             var userName = _caller.Claims.Single(c => c.Type == JwtRegisteredClaimNames.Sub).Value;
             
-            return await _userManager.FindByNameAsync(userName);
+            var user = await _userManager.FindByNameAsync(userName);
+            
+            var userProfile = new UserProfileDTO
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email
+            };
+            return userProfile;
         }
 
         [Authorize(Policy = "UserOnly")]
         [HttpPut]
-        public async Task<IActionResult> UpdateUserProfile([FromBody] User userProfile)
+        public async Task<IActionResult> UpdateUserProfile([FromBody] UserProfileDTO userProfile)
         {
             if (userProfile == null)
             {
